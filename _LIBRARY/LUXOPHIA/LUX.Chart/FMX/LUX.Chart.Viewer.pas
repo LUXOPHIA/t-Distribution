@@ -1,4 +1,4 @@
-﻿unit LUX.Chart.Lines;
+﻿unit LUX.Chart.Viewer;
 
 interface //#################################################################### ■
 
@@ -16,14 +16,14 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
        TChartScal = class;
          TChartScaX = class;
          TChartScaY = class;
-     TChartLines = class;
+     TChartViewer = class;
 
      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TChartAtom
 
      TChartAtom = class
      private
      protected
-       _Paren   :TChartLines;
+       _Paren   :TChartViewer;
        _Opacity :Single;
        _Stroke  :TStrokeBrush;
        _Filler  :TBrush;
@@ -31,10 +31,10 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
        function GetOpacity :Single;
        procedure SetOpacity( const Opacity_:Single );
      public
-       constructor Create( const Paren_:TChartLines );
+       constructor Create( const Paren_:TChartViewer );
        destructor Destroy; override;
        ///// プロパティ
-       property Paren   :TChartLines  read   _Paren                   ;
+       property Paren   :TChartViewer  read   _Paren                   ;
        property Opacity :Single       read GetOpacity write SetOpacity;
        property Stroke  :TStrokeBrush read   _Stroke                  ;
        property Filler  :TBrush       read   _Filler                  ;
@@ -58,7 +58,7 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
        function GetBorder :Single;
        procedure SetBorder( const Border_:Single );
      public
-       constructor Create( const Paren_:TChartLines );
+       constructor Create( const Paren_:TChartViewer );
        destructor Destroy; override;
        ///// プロパティ
        property Pos    :TSingle2D read GetPos    write SetPos   ;
@@ -82,7 +82,7 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
        function GetPoinsN :Integer;
        procedure SetPoinsN( const ValuesN_:Integer );
      public
-       constructor Create( const Paren_:TChartLines );
+       constructor Create( const Paren_:TChartViewer );
        destructor Destroy; override;
        ///// プロパティ
        property Poins[ const I_:Integer ] :TSingle2D read GetPoins  write SetPoins ; default;
@@ -100,7 +100,7 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
        function GetInterv :Single;
        procedure SetInterv( const Interv_:Single );
      public
-       constructor Create( const Paren_:TChartLines );
+       constructor Create( const Paren_:TChartViewer );
        destructor Destroy; override;
        ///// プロパティ
        property Interv :Single read GetInterv write SetInterv;
@@ -111,7 +111,7 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
      TChartScaX = class( TChartScal )
      protected
      public
-       constructor Create( const Paren_:TChartLines );
+       constructor Create( const Paren_:TChartViewer );
        destructor Destroy; override;
        ///// メソッド
        procedure Draw; override;
@@ -122,7 +122,7 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
      TChartScaY = class( TChartScal )
      protected
      public
-       constructor Create( const Paren_:TChartLines );
+       constructor Create( const Paren_:TChartViewer );
        destructor Destroy; override;
        ///// メソッド
        procedure Draw; override;
@@ -133,15 +133,15 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
      TChartAxis = class( TChartAtom )
      protected
      public
-       constructor Create( const Paren_:TChartLines );
+       constructor Create( const Paren_:TChartViewer );
        destructor Destroy; override;
        ///// メソッド
        procedure Draw; override;
      end;
 
-     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TChartLines
+     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TChartViewer
 
-     TChartLines = class( TFrame )
+     TChartViewer = class( TFrame )
      private
        { private 宣言 }
      protected
@@ -214,7 +214,7 @@ end;
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
 
-constructor TChartAtom.Create( const Paren_:TChartLines );
+constructor TChartAtom.Create( const Paren_:TChartViewer );
 begin
      inherited Create;
 
@@ -291,7 +291,7 @@ end;
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
 
-constructor TChartPoin.Create( const Paren_:TChartLines );
+constructor TChartPoin.Create( const Paren_:TChartViewer );
 begin
      inherited;
 
@@ -350,7 +350,7 @@ end;
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
 
-constructor TChartCurv.Create( const Paren_:TChartLines );
+constructor TChartCurv.Create( const Paren_:TChartViewer );
 begin
      inherited;
 
@@ -409,7 +409,7 @@ end;
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
 
-constructor TChartScal.Create( const Paren_:TChartLines );
+constructor TChartScal.Create( const Paren_:TChartViewer );
 begin
      inherited;
 
@@ -432,7 +432,7 @@ end;
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
 
-constructor TChartScaX.Create( const Paren_:TChartLines );
+constructor TChartScaX.Create( const Paren_:TChartViewer );
 begin
      inherited;
 
@@ -485,7 +485,7 @@ end;
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
 
-constructor TChartScaY.Create( const Paren_:TChartLines );
+constructor TChartScaY.Create( const Paren_:TChartViewer );
 begin
      inherited;
 
@@ -538,7 +538,7 @@ end;
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
 
-constructor TChartAxis.Create( const Paren_:TChartLines );
+constructor TChartAxis.Create( const Paren_:TChartViewer );
 begin
      inherited;
 
@@ -576,7 +576,7 @@ begin
      end;
 end;
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TChartLines
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TChartViewer
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& private
 
@@ -584,61 +584,61 @@ end;
 
 /////////////////////////////////////////////////////////////////////// アクセス
 
-function TChartLines.GetMinX :Single;
+function TChartViewer.GetMinX :Single;
 begin
      Result := _Area.Min.X;
 end;
 
-procedure TChartLines.SetMinX( const MinX_:Single );
+procedure TChartViewer.SetMinX( const MinX_:Single );
 begin
      _Area.Min.X := MinX_;  Repaint;
 end;
 
-function TChartLines.GetMaxX :Single;
+function TChartViewer.GetMaxX :Single;
 begin
      Result := _Area.Max.X;
 end;
 
-procedure TChartLines.SetMaxX( const MaxX_:Single );
+procedure TChartViewer.SetMaxX( const MaxX_:Single );
 begin
      _Area.Max.X := MaxX_;  Repaint;
 end;
 
-function TChartLines.GetMinY :Single;
+function TChartViewer.GetMinY :Single;
 begin
      Result := _Area.Min.Y;
 end;
 
-procedure TChartLines.SetMinY( const MinY_:Single );
+procedure TChartViewer.SetMinY( const MinY_:Single );
 begin
      _Area.Min.Y := MinY_;  Repaint;
 end;
 
-function TChartLines.GetMaxY :Single;
+function TChartViewer.GetMaxY :Single;
 begin
      Result := _Area.Max.Y;
 end;
 
-procedure TChartLines.SetMaxY( const MaxY_:Single );
+procedure TChartViewer.SetMaxY( const MaxY_:Single );
 begin
      _Area.Max.Y := MaxY_;  Repaint;
 end;
 
 //------------------------------------------------------------------------------
 
-function TChartLines.GetAreaColor :TAlphaColor;
+function TChartViewer.GetAreaColor :TAlphaColor;
 begin
      Result := _AreaColor;
 end;
 
-procedure TChartLines.SetAreaColor( const BackColor_:TAlphaColor );
+procedure TChartViewer.SetAreaColor( const BackColor_:TAlphaColor );
 begin
      _AreaColor := BackColor_;  Repaint;
 end;
 
 /////////////////////////////////////////////////////////////////////// メソッド
 
-procedure TChartLines.Paint;
+procedure TChartViewer.Paint;
 var
    I :Integer;
 begin
@@ -651,7 +651,7 @@ end;
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
 
-constructor TChartLines.Create( AOwner_:TComponent );
+constructor TChartViewer.Create( AOwner_:TComponent );
 begin
      inherited;
 
@@ -691,7 +691,7 @@ begin
      _Axis := TChartAxis.Create( Self );
 end;
 
-destructor TChartLines.Destroy;
+destructor TChartViewer.Destroy;
 begin
      _ScaXs.DisposeOf;
      _ScaYs.DisposeOf;
@@ -703,33 +703,33 @@ end;
 
 /////////////////////////////////////////////////////////////////////// メソッド
 
-function TChartLines.PosToScrX( const Pos_:Single ) :Single;
+function TChartViewer.PosToScrX( const Pos_:Single ) :Single;
 begin
      Result := ( Pos_ - _Area.Min.X ) / ( _Area.Max.X - _Area.Min.X ) * Width ;
 end;
 
-function TChartLines.PosToScrY( const Pos_:Single ) :Single;
+function TChartViewer.PosToScrY( const Pos_:Single ) :Single;
 begin
      Result := ( Pos_ - _Area.Max.Y ) / ( _Area.Min.Y - _Area.Max.Y ) * Height;
 end;
 
-function TChartLines.PosToScr( const Pos_:TSingle2D ) :TPointF;
+function TChartViewer.PosToScr( const Pos_:TSingle2D ) :TPointF;
 begin
      Result.X := PosToScrX( Pos_.X );
      Result.Y := PosToScrY( Pos_.Y );
 end;
 
-function TChartLines.ScrToPosX( const Scr_:Single ) :Single;
+function TChartViewer.ScrToPosX( const Scr_:Single ) :Single;
 begin
      Result := Scr_ / Width  * ( _Area.Max.X - _Area.Min.X ) + _Area.Min.X;
 end;
 
-function TChartLines.ScrToPosY( const Scr_:Single ) :Single;
+function TChartViewer.ScrToPosY( const Scr_:Single ) :Single;
 begin
      Result := Scr_ / Height * ( _Area.Min.Y - _Area.Max.Y ) + _Area.Max.Y;
 end;
 
-function TChartLines.ScrToPos( const Scr_:TPointF ) :TSingle2D;
+function TChartViewer.ScrToPos( const Scr_:TPointF ) :TSingle2D;
 begin
      Result.X := ScrToPosX( Scr_.X );
      Result.Y := ScrToPosY( Scr_.Y );
@@ -737,7 +737,7 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure TChartLines.DrawCirc( const Center_:TSingle2D; const Radius_,Opacity_:Single );
+procedure TChartViewer.DrawCirc( const Center_:TSingle2D; const Radius_,Opacity_:Single );
 var
    R :TRectF;
 begin
