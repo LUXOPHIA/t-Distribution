@@ -55,6 +55,21 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 > ![](http://dlmf.nist.gov/8.17.E4.png)　`...(9)`  
 > \* [DLMF: 8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF: NIST Digital Library of Mathematical Functions](http://dlmf.nist.gov)
 
+我々の実装では、**| X | < 4.2** か どうかで定義式を切り替えている。
+
+```pascal
+function CumDistT( const X_:Double; const V_:Cardinal ) :Double;
+var
+   X2, B :Double;
+begin
+     X2 := Pow2( X_ );
+     if X2 < 17.62 then B := 1 - RegIncBeta( X2 / ( X2 + V_ ), 1  / 2, V_ / 2 )
+                   else B :=     RegIncBeta( V_ / ( X2 + V_ ), V_ / 2, 1  / 2 );
+     if X_ < 0 then Result :=     B / 2
+               else Result := 1 - B / 2;
+end;
+```
+
 ----
 
 [![Delphi Starter](http://img.en25.com/EloquaImages/clients/Embarcadero/%7B063f1eec-64a6-4c19-840f-9b59d407c914%7D_dx-starter-bn159.png)](https://www.embarcadero.com/jp/products/delphi/starter)
