@@ -44,13 +44,13 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/67e82953fc336931557e31aaddfc1251281d8908)　`...(6)`  
 > \* [Hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function#Special_cases)：[Wikipedia](https://www.wikipedia.org)
 
-しかし **式\(3\)** で示した定義は、x の全域をサポートするものの、[自由度](https://ja.wikipedia.org/wiki/自由度)（[Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry))）ν が大きくなると容易く発散してしまう。そこで**正の定義域**しかサポートされていないが、以下のような定義を用いるのが一般的である。幸い累積分布関数は奇関数なので、負の定義域を定義することも容易である。
+しかし 式(3) で示した定義は、x の全域をサポートするものの、[自由度](https://ja.wikipedia.org/wiki/自由度)（[Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry))）ν が大きくなると容易く発散してしまう。そこで**正の定義域**しかサポートされていないが、以下のような定義を用いるのが一般的である。幸い累積分布関数は奇関数なので、負の定義域を定義することも容易である。
 
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/0d164fa8bcb0868d34a489b1ec5f6f2eabd5d30f)　`...(7)`  
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/2f37cd9b82db9e895de57d4e843b7d53381655e4)　`...(8)`  
 > \* [Student's t-Distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
 
-しかしこの定義式は、ゼロに近い定義域における誤差が大きい。そこで以下の関係式を用い、正則不完全ベータ関数の引数を交換した定義式も併用する。
+しかしこの定義式は、ゼロに近い定義域における誤差が大きい。そこで以下の関係式を用い、正則不完全ベータ関数の引数を交換した定義式も併用する。この場合、逆に絶対値の大きい定義域で発散してしまうが、定義域に応じて 式(3) と切り替えて利用することにより、補い合って x の全域をサポートすることができる。
 
 > ![](http://dlmf.nist.gov/8.17.E4.png)　`...(9)`  
 > \* [DLMF: 8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF: NIST Digital Library of Mathematical Functions](http://dlmf.nist.gov)
