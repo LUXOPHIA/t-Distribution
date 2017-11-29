@@ -252,8 +252,8 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 const
-     MinP :Double  = 0.0000001;
-     MaxP :Double  = 0.9999999;
+     MinP :Double  = 0 + DOUBLE_EPS4;
+     MaxP :Double  = 1 - DOUBLE_EPS4;
      DivN :Integer = 1000;
 var
    I :Integer;
