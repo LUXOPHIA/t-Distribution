@@ -1,0 +1,154 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 't-Distribution'
+  ClientHeight = 620
+  ClientWidth = 830
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Align = Right
+    Margins.Left = -10.000000000000000000
+    Position.X = 610.000000000000000000
+    Size.Width = 220.000000000000000000
+    Size.Height = 620.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'pushpanel'
+    TabOrder = 0
+    object Memo1: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Align = Client
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Size.Width = 170.000000000000000000
+      Size.Height = 460.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Viewport.Width = 166.000000000000000000
+      Viewport.Height = 456.000000000000000000
+    end
+    object Panel2: TPanel
+      Align = Top
+      Position.X = 30.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 150.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'pushpanel'
+      TabOrder = 1
+      object LabelFDc: TLabel
+        StyledSettings = [Size, Style, FontColor]
+        Position.X = 5.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.HorzAlign = Trailing
+        Text = 'FreedDeg :'
+        TabOrder = 5
+      end
+      object LabelFD: TLabel
+        StyledSettings = [Size, Style, FontColor]
+        Position.X = 75.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 105.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'MS Gothic'
+        TabOrder = 0
+      end
+      object LabelPPc: TLabel
+        StyledSettings = [Size, Style, FontColor]
+        Position.X = 5.000000000000000000
+        Position.Y = 60.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.HorzAlign = Trailing
+        Text = 'PercPoin :'
+        TabOrder = 4
+      end
+      object LabelPP: TLabel
+        StyledSettings = [Size, Style, FontColor]
+        Position.X = 75.000000000000000000
+        Position.Y = 60.000000000000000000
+        Size.Width = 105.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'MS Gothic'
+        TabOrder = 2
+      end
+      object LabelCPc: TLabel
+        StyledSettings = [Size, Style, FontColor]
+        Position.X = 5.000000000000000000
+        Position.Y = 35.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.HorzAlign = Trailing
+        Text = 'CumuProb :'
+        TabOrder = 3
+      end
+      object LabelCP: TLabel
+        StyledSettings = [Size, Style, FontColor]
+        Position.X = 75.000000000000000000
+        Position.Y = 35.000000000000000000
+        Size.Width = 105.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'MS Gothic'
+        TabOrder = 1
+      end
+      object Button1: TButton
+        Position.X = 10.000000000000000000
+        Position.Y = 90.000000000000000000
+        Size.Width = 170.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        Text = 'InvCumDistT'
+        OnClick = Button1Click
+      end
+    end
+    object ScrollBar1: TScrollBar
+      Align = MostLeft
+      Max = 3.000000000000000000
+      Value = 3.000000000000000000
+      SmallChange = 0.000000000000000000
+      Orientation = Vertical
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 20.000000000000000000
+      Size.Height = 600.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      OnChange = ScrollBar1Change
+    end
+  end
+  inline ChartViewer1: TChartViewer
+    Align = Client
+    ClipChildren = True
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 600.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    OnMouseDown = ChartViewer1MouseDown
+    OnMouseMove = ChartViewer1MouseMove
+    OnMouseUp = ChartViewer1MouseUp
+  end
+end
