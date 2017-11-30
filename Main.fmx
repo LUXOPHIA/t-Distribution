@@ -51,7 +51,7 @@ object Form1: TForm1
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'MS Gothic'
         TextSettings.HorzAlign = Trailing
-        Text = 'FreedDeg :'
+        Text = 'FreeDegr :'
         TabOrder = 5
       end
       object LabelFD: TLabel
@@ -86,7 +86,7 @@ object Form1: TForm1
         TextSettings.Font.Family = 'MS Gothic'
         TabOrder = 2
       end
-      object LabelCPc: TLabel
+      object LabelCDc: TLabel
         StyledSettings = [Size, Style, FontColor]
         Position.X = 5.000000000000000000
         Position.Y = 35.000000000000000000
@@ -95,10 +95,10 @@ object Form1: TForm1
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'MS Gothic'
         TextSettings.HorzAlign = Trailing
-        Text = 'CumuProb :'
+        Text = 'CumuDist :'
         TabOrder = 3
       end
-      object LabelCP: TLabel
+      object LabelCD: TLabel
         StyledSettings = [Size, Style, FontColor]
         Position.X = 75.000000000000000000
         Position.Y = 35.000000000000000000

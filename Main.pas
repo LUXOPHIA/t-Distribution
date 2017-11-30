@@ -20,8 +20,8 @@ type
           LabelFD: TLabel;
         LabelPPc: TLabel;
           LabelPP: TLabel;
-        LabelCPc: TLabel;
-          LabelCP: TLabel;
+        LabelCDc: TLabel;
+          LabelCD: TLabel;
         Button1: TButton;
       Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
@@ -72,7 +72,7 @@ begin
           with Stroke do
           begin
                Thickness := 6;
-               Color     := $FF8585ff;
+               Color     := $FFa3a3ff;
           end;
      end;
 
@@ -96,7 +96,7 @@ begin
           with Stroke do
           begin
                Thickness := 4;
-               Color     := $FFff8787;
+               Color     := $FF77ba77;
           end;
      end;
 
@@ -107,7 +107,7 @@ begin
 
           with Filler do
           begin
-               Color := $FF808080;
+               Color := $FFf28f8f;
           end;
      end;
 end;
@@ -174,8 +174,8 @@ begin
      P.X := InvCumDistT( _MouseP, _FreeD );
      P.Y := _MouseP;
 
-     LabelCP.Text := P.Y.ToString;
-     LabelPP.Text := P.X.ToString;
+     LabelPP.Text := FloatToStrF( P.X, TFloatFormat.ffFixed, 15, 10 );
+     LabelCD.Text := FloatToStrF( P.Y, TFloatFormat.ffFixed, 15, 10 );
 
      _Poin.Pos := TSingle2D( P );
 end;
@@ -212,7 +212,7 @@ procedure TForm1.ScrollBar1Change(Sender: TObject);
 begin
      _FreeD := Power( 10, ScrollBar1.Max - ScrollBar1.Value );
 
-     LabelFD.Text := _FreeD.ToString;
+     LabelFD.Text := FloatToStrF( _FreeD, TFloatFormat.ffFixed, 15, 10 );
 
      CalcCurvs;
      CalcPoin;
