@@ -57,12 +57,11 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C1)_5.png)
 
-そこで以下の関係式を用い、正則不完全ベータ関数の引数を交換した定義式`(9)`を併用する。
+そこで正則不完全ベータ関数の関係式を用いて、以下のように引数の順序を交換した定義式を併用する。
 
-> ![](http://dlmf.nist.gov/8.17.E4.png)　`...(8)`  
-> \* [8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF](http://dlmf.nist.gov)
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cbegin%7Bgathered%7D%20%7B%7BF%7D%5Cleft%28%7Bt%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B1%7D%7B2%7D%5Cleft%5B%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%7Bx%7D%7B%5Cmathrm%7B%27%7D%7D%5Cleft%28%7Bt%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%7B%5Cmathrm%7B%2C%7D%7D%5Chspace%7B0.33em%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29%7D%5Cright%5D%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B1%7D%7B2%7D%5Cleft%5B%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%7BI%7D_%7B%7Bx%7D%7B%5Cmathrm%7B%27%7D%7D%5Cleft%28%7Bt%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%7B%5Cmathrm%7B%2C%7D%7D%5Chspace%7B0.33em%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29%7D%5Cright%5D%7B%5Cmathrm%7B%2C%7D%7D%7D%20%5Chfill%5C%5C%20%7B%7Bx%7D%7B%5Cmathrm%7B%27%7D%7D%5Cleft%28%7Bt%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bt%7D%5E%7B2%7D%7D%7B%7Bt%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D%7B%5Cmathrm%7B.%7D%7D%7D%20%5Chfill%5C%5C%20%7B%5Cmathrm%7B%5Cbecause%7D%5Chspace%7B0.33em%7D%7BI%7D_%7B%7Bx%7D%5Cleft%28%7Bt%7D%5Cright%29%7D%5Cleft%28%7B%7Ba%7D%7B%5Cmathrm%7B%2C%7D%7D%5Chspace%7B0.33em%7D%7Bb%7D%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bx%7D%5Cleft%28%7Bt%7D%5Cright%29%7D%5Cleft%28%7B%7Bb%7D%7B%5Cmathrm%7B%2C%7D%7D%5Chspace%7B0.33em%7D%7Ba%7D%7D%5Cright%29%7D%20%5Chfill%20%5Cend%7Bgathered%7D)　`...(8)`
 
-もっとも定義式`(9)`では、下図のように絶対値の大きい定義域で発散してしまうが、それぞれが有効な領域に応じて定義式を切り替えることにより、補い合って`x`の全域を高精度にサポートすることが可能となる。
+もっともこの式`(9)`であっても、下図のように絶対値の大きい定義域では発散してしまうが、それぞれの領域に有効な定義式を適宜選択することで、`x`の全域を高精度にサポートすることが可能となる。
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(1%2C%CE%BD)_100.png)
 
