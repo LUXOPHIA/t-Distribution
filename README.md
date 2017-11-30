@@ -6,12 +6,12 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png)  
 
-ｔ分布の確率密度関数は、[ベータ関数](https://ja.wikipedia.org/wiki/ベータ関数)（[Beta function](https://en.wikipedia.org/wiki/Beta_function)）を用いて、以下のように定義される。
+ｔ分布の確率密度関数は [ベータ関数](https://ja.wikipedia.org/wiki/ベータ関数)（[Beta function](https://en.wikipedia.org/wiki/Beta_function)）を用いて以下のように定義される。
 
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/83f62791152ac95ae81bc2ff11354bf9bfa88941)　`...(1)`  
 > \* [Student's t-Distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
 
-ベータ関数 は [ガンマ関数](https://ja.wikipedia.org/wiki/ガンマ関数)（[Beta function](https://en.wikipedia.org/wiki/Beta_function)）を用いて、以下のように定義される。
+ベータ関数 は [ガンマ関数](https://ja.wikipedia.org/wiki/ガンマ関数)（[Beta function](https://en.wikipedia.org/wiki/Beta_function)）を用いて以下のように定義される。
 
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/70c94c96b6a5b81af91bc24bf2bbfea915c8071c)　`...(2)`  
 > \* [Student's t-Distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
@@ -26,23 +26,23 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF.png)  
 
-ｔ分布の累積分布関数は、[正則不完全ベータ関数](https://ja.wikipedia.org/wiki/不完全ベータ関数)（[Regularized incomplete beta function](https://en.wikipedia.org/wiki/Beta_function#Incomplete_beta_function)）を用いて、以下のように定義される。
+ｔ分布の累積分布関数は [正則不完全ベータ関数](https://ja.wikipedia.org/wiki/不完全ベータ関数)（[Regularized incomplete beta function](https://en.wikipedia.org/wiki/Beta_function#Incomplete_beta_function)）を用いて以下のように定義される。
 
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/1d76813650b551ffae18e9a3466d57097ffd1af1)　`...(3)`  
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/c9ab1cf1e60389cf1a1583326d995c780a679e75)  
 > \* [t分布](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
 
-正則不完全ベータ関数は、[不完全ベータ関数](https://ja.wikipedia.org/wiki/不完全ベータ関数)（[Incomplete beta function](https://en.wikipedia.org/wiki/Beta_function#Incomplete_beta_function)）と標準のガンマ関数を用いて、以下のように定義される。
+正則不完全ベータ関数は [不完全ベータ関数](https://ja.wikipedia.org/wiki/不完全ベータ関数)（[Incomplete beta function](https://en.wikipedia.org/wiki/Beta_function#Incomplete_beta_function)）と標準のガンマ関数を用いて以下のように定義される。
 
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/df598957dcc02bd38b07e8e12949e930ad1722c5)　`...(4)`  
 > \* [t分布](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
 
-不完全ベータ関数は、[ガウスの超幾何関数](https://ja.wikipedia.org/wiki/超幾何級数)（[Gaussian hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function)）を用いて、以下のように定義される。
+不完全ベータ関数は [ガウスの超幾何関数](https://ja.wikipedia.org/wiki/超幾何級数)（[Gaussian hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function)）を用いて以下のように定義される。
 
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/67e82953fc336931557e31aaddfc1251281d8908)　`...(5)`  
 > \* [Hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function#Special_cases)：[Wikipedia](https://www.wikipedia.org)
 
-しかし定義式`(3)`は、一つの式で`x`の全域をサポートするものの、絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)（[Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry))）`ν`が大きくなると発散しやすい。
+しかし定義式`(3)`は一つの式で`x`の全域をサポートするものの、絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)（[Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry))）`ν`が大きくなると発散しやすい。
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C%CE%BD)_100.png)
 
@@ -52,7 +52,7 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/2f37cd9b82db9e895de57d4e843b7d53381655e4)  
 > \* [Student's t-Distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
 
-しかしこの定義式`(6)`は、絶対値の小さい定義域において精度が大幅に低下する。
+しかしこの定義式`(6)`は絶対値の小さい定義域において精度が大幅に低下する。
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C1)_5.png)
 
@@ -61,11 +61,11 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 > ![](http://dlmf.nist.gov/8.17.E4.png)　`...(7)`  
 > \* [DLMF: 8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF: NIST Digital Library of Mathematical Functions](http://dlmf.nist.gov)
 
-もっとも定義式`(8)`では、逆に絶対値の大きい定義域で発散してしまうが、それぞれが有効な領域に応じて定義式を切り替えることにより、補い合って`x`の全域を高精度にサポートすることが可能となる。
+もっとも定義式`(8)`では逆に絶対値の大きい定義域で発散してしまうが、それぞれが有効な領域に応じて定義式を切り替えることにより、補い合って`x`の全域を高精度にサポートすることが可能となる。
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(1%2C%CE%BD)_100.png)
 
-我々の実装では、経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
+我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
 
 ```pascal
 function CumDistT( const X_,V_:Double ) :Double;
