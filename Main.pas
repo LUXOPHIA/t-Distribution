@@ -41,7 +41,7 @@ type
     procedure MakeCharts;
   public
     { public 宣言 }
-    _FreeN :Cardinal;
+    _FreeD :Double;
     _CurvT :TChartCurv;
     _CurvC :TChartCurv;
     _CurvI :TChartCurv;
@@ -121,8 +121,8 @@ var
 begin
      with ChartViewer1 do
      begin
-          _MinP := CumDistT( MinX, _FreeN );
-          _MaxP := CumDistT( MaxX, _FreeN );
+          _MinP := CumDistT( MinX, _FreeD );
+          _MaxP := CumDistT( MaxX, _FreeD );
      end;
 
      for I := 0 to _CurvI.PoinsN-1 do
@@ -131,8 +131,8 @@ begin
           begin
                P.X := ( MaxX - MinX ) / (_CurvT.PoinsN-1) * I + MinX;
 
-               P.Y := CumDistT( P.X, _FreeN );
-               P.X := InvCumDistT( P.Y, _FreeN );
+               P.Y := CumDistT( P.X, _FreeD );
+               P.X := InvCumDistT( P.Y, _FreeD );
           end;
 
           _CurvI[ I ] := TSingle2D( P );
@@ -143,7 +143,7 @@ begin
           with ChartViewer1 do
           begin
                P.X := ( MaxX - MinX ) / (_CurvT.PoinsN-1) * I + MinX;
-               P.Y := CumDistT( P.X, _FreeN );
+               P.Y := CumDistT( P.X, _FreeD );
           end;
 
           _CurvC[ I ] := TSingle2D( P );
@@ -154,7 +154,7 @@ begin
           with ChartViewer1 do
           begin
                P.X := ( MaxX - MinX ) / (_CurvT.PoinsN-1) * I + MinX;
-               P.Y := DistT( P.X, _FreeN );
+               P.Y := DistT( P.X, _FreeD );
           end;
 
           _CurvT[ I ] := TSingle2D( P );
@@ -171,7 +171,7 @@ begin
                         else
      if _MaxP < _MouseP then _MouseP := _MaxP;
 
-     P.X := InvCumDistT( _MouseP, _FreeN );
+     P.X := InvCumDistT( _MouseP, _FreeD );
      P.Y := _MouseP;
 
      LabelCP.Text := P.Y.ToString;
@@ -210,9 +210,9 @@ end;
 
 procedure TForm1.ScrollBar1Change(Sender: TObject);
 begin
-     _FreeN := Round( Power( 10, ScrollBar1.Max - ScrollBar1.Value ) );
+     _FreeD := Power( 10, ScrollBar1.Max - ScrollBar1.Value );
 
-     LabelFD.Text := _FreeN.ToString;
+     LabelFD.Text := _FreeD.ToString;
 
      CalcCurvs;
      CalcPoin;
