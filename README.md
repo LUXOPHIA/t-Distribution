@@ -43,7 +43,26 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 > ![](http://dlmf.nist.gov/8.17.E8.png)　`...(6)`  
 > \* [8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF](http://dlmf.nist.gov)
 
-しかし定義式`(3)`は一つの式で`x`の全域をサポートするものの、下図のように絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
+```Pascal
+function HypGeo21( const A_,B_,C_,X_:Double ) :Double;
+var
+   P0, P1 :Double;
+   N :Integer;
+begin
+     P0 := 1;
+     Result := P0;
+     for N := 0 to 10000 do
+     begin
+          P1 := ( ( A_ + N ) * ( B_ + N ) )
+              / ( ( C_ + N ) * ( 1  + N ) ) * X_ * P0;
+          Result := Result + P1;
+          if Abs( P1 ) < DOUBLE_EPS3 then Break;
+          P0 := P1;
+     end;
+end;
+```
+
+しかし定義式`(3)`は、一つの式で`x`の全域をサポートするものの、下図のように絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C%CE%BD)_100.png)
 
