@@ -252,12 +252,12 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 const
-     MinP :Double  = 0 + DOUBLE_EPS4;
-     MaxP :Double  = 1 - DOUBLE_EPS4;
+     MinP :Double  = 0 + DOUBLE_EPS3;
+     MaxP :Double  = 1 - DOUBLE_EPS3;
      DivN :Integer = 1000;
 var
    I :Integer;
-   X, P :Double;
+   P :Double;
 begin
      with Memo1 do
      begin
@@ -267,13 +267,35 @@ begin
           begin
                Clear;
 
+               Add( 'P'
+                  + '	' + 'ν=   1'
+                  + '	' + 'ν=   2'
+                  + '	' + 'ν=   4'
+                  + '	' + 'ν=   8'
+                  + '	' + 'ν=  16'
+                  + '	' + 'ν=  32'
+                  + '	' + 'ν=  64'
+                  + '	' + 'ν= 128'
+                  + '	' + 'ν= 256'
+                  + '	' + 'ν= 512'
+                  + '	' + 'ν=1024' );
+
                for I := 0 to DivN do
                begin
                     P := ( MaxP - MinP ) / DivN * I + MinP;
 
-                    X := InvCumDistT( P, _FreeN );
-
-                    Add( X.ToString + '	' + P.ToString );
+                    Add( P.ToString
+                       + '	' + InvCumDistT( P,    1 ).ToString
+                       + '	' + InvCumDistT( P,    2 ).ToString
+                       + '	' + InvCumDistT( P,    4 ).ToString
+                       + '	' + InvCumDistT( P,    8 ).ToString
+                       + '	' + InvCumDistT( P,   16 ).ToString
+                       + '	' + InvCumDistT( P,   32 ).ToString
+                       + '	' + InvCumDistT( P,   64 ).ToString
+                       + '	' + InvCumDistT( P,  128 ).ToString
+                       + '	' + InvCumDistT( P,  256 ).ToString
+                       + '	' + InvCumDistT( P,  512 ).ToString
+                       + '	' + InvCumDistT( P, 1024 ).ToString );
                end;
           end;
 
