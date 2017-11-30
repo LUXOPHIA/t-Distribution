@@ -13,8 +13,8 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 ベータ関数 は [ガンマ関数](https://ja.wikipedia.org/wiki/ガンマ関数)([Beta function](https://en.wikipedia.org/wiki/Beta_function)) を用いて以下のように定義される。
 
-> ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/70c94c96b6a5b81af91bc24bf2bbfea915c8071c)　`...(2)`  
-> \* [Student's t-Distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
+> ![](http://dlmf.nist.gov/5.12.E1.png)　`...(2)`  
+> \* [5.12 Beta Function](http://dlmf.nist.gov/5.12)：[DLMF](http://dlmf.nist.gov)
 
 ガンマ関数の計算方法は以下を参照のこと。
 
@@ -34,34 +34,35 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 正則不完全ベータ関数は [不完全ベータ関数](https://ja.wikipedia.org/wiki/不完全ベータ関数)([Incomplete beta function](https://en.wikipedia.org/wiki/Beta_function#Incomplete_beta_function)) と標準のガンマ関数を用いて以下のように定義される。
 
-> ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/df598957dcc02bd38b07e8e12949e930ad1722c5)　`...(4)`  
-> \* [t分布](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
+> ![](http://dlmf.nist.gov/8.17.E2.png)　`...(4)`  
+> \* [8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF](http://dlmf.nist.gov)
 
-不完全ベータ関数は [ガウスの超幾何関数](https://ja.wikipedia.org/wiki/超幾何級数)([Gaussian hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function)) を用いて以下のように定義される。
+不完全ベータ関数は [ガウスの超幾何関数](https://ja.wikipedia.org/wiki/超幾何級数)([Gaussian hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function)) を用いて以下のように定義される。なお、式`(6)`の方が桁落ちを避けられるので計算精度が高い。
 
-> ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/67e82953fc336931557e31aaddfc1251281d8908)　`...(5)`  
-> \* [Hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function#Special_cases)：[Wikipedia](https://www.wikipedia.org)
+> ![](http://dlmf.nist.gov/8.17.E7.png)　`...(5)`  
+> ![](http://dlmf.nist.gov/8.17.E8.png)　`...(6)`  
+> \* [8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF](http://dlmf.nist.gov)
 
-しかし定義式`(3)`は一つの式で`x`の全域をサポートするものの、絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
+しかし定義式`(3)`は一つの式で`x`の全域をサポートするものの、下図のように絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C%CE%BD)_100.png)
 
 そこで**正の定義域**しかサポートされていないが、以下のような定義を用いるのが一般的である。幸い累積分布関数は奇関数なので、負の定義域へ拡張することも容易である。
 
-> ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/0d164fa8bcb0868d34a489b1ec5f6f2eabd5d30f)　`...(6)`  
+> ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/0d164fa8bcb0868d34a489b1ec5f6f2eabd5d30f)　`...(7)`  
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/2f37cd9b82db9e895de57d4e843b7d53381655e4)  
 > \* [Student's t-Distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
 
-しかしこの定義式`(6)`は絶対値の小さい定義域において精度が大幅に低下する。
+しかしこの定義式`(7)`は、下図のように絶対値の小さい定義域において精度が大幅に低下する。
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C1)_5.png)
 
-そこで以下の関係式`(7)`を用い、正則不完全ベータ関数の引数を交換した定義式`(8)`も併用する。
+そこで以下の関係式を用い、正則不完全ベータ関数の引数を交換した定義式`(9)`を併用する。
 
-> ![](http://dlmf.nist.gov/8.17.E4.png)　`...(7)`  
-> \* [DLMF: 8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF: NIST Digital Library of Mathematical Functions](http://dlmf.nist.gov)
+> ![](http://dlmf.nist.gov/8.17.E4.png)　`...(8)`  
+> \* [8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF](http://dlmf.nist.gov)
 
-もっとも定義式`(8)`では逆に絶対値の大きい定義域で発散してしまうが、それぞれが有効な領域に応じて定義式を切り替えることにより、補い合って`x`の全域を高精度にサポートすることが可能となる。
+もっとも定義式`(9)`では、下図のように絶対値の大きい定義域で発散してしまうが、それぞれが有効な領域に応じて定義式を切り替えることにより、補い合って`x`の全域を高精度にサポートすることが可能となる。
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(1%2C%CE%BD)_100.png)
 
