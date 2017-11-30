@@ -42,18 +42,28 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/67e82953fc336931557e31aaddfc1251281d8908)　`...(5)`  
 > \* [Hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function#Special_cases)：[Wikipedia](https://www.wikipedia.org)
 
-しかし定義式`(3)`は、一つの式で`x`の全域をサポートするものの、絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)（[Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry))）`ν`が大きくなると発散しやすい。そこで**正の定義域**しかサポートされていないが、以下のような定義を用いるのが一般的である。幸い累積分布関数は奇関数なので、負の定義域へ拡張することも容易である。
+しかし定義式`(3)`は、一つの式で`x`の全域をサポートするものの、絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)（[Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry))）`ν`が大きくなると発散しやすい。
+
+![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C%CE%BD)_100.png)
+
+そこで**正の定義域**しかサポートされていないが、以下のような定義を用いるのが一般的である。幸い累積分布関数は奇関数なので、負の定義域へ拡張することも容易である。
 
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/0d164fa8bcb0868d34a489b1ec5f6f2eabd5d30f)　`...(6)`  
 > ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/2f37cd9b82db9e895de57d4e843b7d53381655e4)  
 > \* [Student's t-Distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution)：[Wikipedia](https://www.wikipedia.org)
 
-しかしこの定義式`(6)`は、絶対値の小さい定義域において精度が大幅に低下する。そこで以下の関係式`(7)`を用い、正則不完全ベータ関数の引数を交換した定義式`(8)`も併用する。
+しかしこの定義式`(6)`は、絶対値の小さい定義域において精度が大幅に低下する。
+
+![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C1)_5.png)
+
+そこで以下の関係式`(7)`を用い、正則不完全ベータ関数の引数を交換した定義式`(8)`も併用する。
 
 > ![](http://dlmf.nist.gov/8.17.E4.png)　`...(7)`  
 > \* [DLMF: 8.17 Incomplete Beta Functions](http://dlmf.nist.gov/8.17)：[DLMF: NIST Digital Library of Mathematical Functions](http://dlmf.nist.gov)
 
-もっとも定義式`(8)`では、逆に絶対値の大きい定義域で発散してしまうが、それぞれが得意な領域に応じて定義式を切り替えることにより、補い合って`x`の全域を高精度にサポートすることができる。
+もっとも定義式`(8)`では、逆に絶対値の大きい定義域で発散してしまうが、それぞれが有効な領域に応じて定義式を切り替えることにより、補い合って`x`の全域を高精度にサポートすることが可能となる。
+
+![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(1%2C%CE%BD)_100.png)
 
 我々の実装では、経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
 
