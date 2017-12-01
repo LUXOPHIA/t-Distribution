@@ -39,6 +39,8 @@ type
     _MaxP   :Single;
     ///// メソッド
     procedure MakeCharts;
+  public const
+    _DivN :Cardinal = 128;
   public
     { public 宣言 }
     _FreeD :Double;
@@ -64,10 +66,14 @@ uses System.Math;
 
 procedure TForm1.MakeCharts;
 begin
-          _CurvI := TChartCurv.Create( ChartViewer1 );
+     _CurvI := TChartCurv.Create( ChartViewer1 );
+     _CurvC := TChartCurv.Create( ChartViewer1 );
+     _CurvT := TChartCurv.Create( ChartViewer1 );
+     _Poin  := TChartPoin.Create( ChartViewer1 );
+
      with _CurvI do
      begin
-          PoinsN := 100;
+          PoinsN := _DivN+1;
 
           with Stroke do
           begin
@@ -76,10 +82,9 @@ begin
           end;
      end;
 
-          _CurvC := TChartCurv.Create( ChartViewer1 );
      with _CurvC do
      begin
-          PoinsN := 100;
+          PoinsN := _DivN+1;
 
           with Stroke do
           begin
@@ -88,10 +93,9 @@ begin
           end;
      end;
 
-          _CurvT := TChartCurv.Create( ChartViewer1 );
      with _CurvT do
      begin
-          PoinsN := 100;
+          PoinsN := _DivN+1;
 
           with Stroke do
           begin
@@ -100,7 +104,6 @@ begin
           end;
      end;
 
-          _Poin := TChartPoin.Create( ChartViewer1 );
      with _Poin do
      begin
           Radius := 6;
@@ -123,41 +126,23 @@ begin
      begin
           _MinP := CumDistT( MinX, _FreeD );
           _MaxP := CumDistT( MaxX, _FreeD );
-     end;
 
-     for I := 0 to _CurvI.PoinsN-1 do
-     begin
-          with ChartViewer1 do
+          for I := 0 to _DivN do
           begin
-               P.X := ( MaxX - MinX ) / (_CurvT.PoinsN-1) * I + MinX;
+               P.X := ( MaxX - MinX ) * I / _DivN + MinX;
 
-               P.Y := CumDistT( P.X, _FreeD );
-               P.X := InvCumDistT( P.Y, _FreeD );
-          end;
-
-          _CurvI[ I ] := TSingle2D( P );
-     end;
-
-     for I := 0 to _CurvC.PoinsN-1 do
-     begin
-          with ChartViewer1 do
-          begin
-               P.X := ( MaxX - MinX ) / (_CurvT.PoinsN-1) * I + MinX;
-               P.Y := CumDistT( P.X, _FreeD );
-          end;
-
-          _CurvC[ I ] := TSingle2D( P );
-     end;
-
-     for I := 0 to _CurvT.PoinsN-1 do
-     begin
-          with ChartViewer1 do
-          begin
-               P.X := ( MaxX - MinX ) / (_CurvT.PoinsN-1) * I + MinX;
                P.Y := DistT( P.X, _FreeD );
-          end;
 
-          _CurvT[ I ] := TSingle2D( P );
+               _CurvT[ I ] := TSingle2D( P );
+
+               P.Y := CumDistT( P.X, _FreeD );
+
+               _CurvC[ I ] := TSingle2D( P );
+
+               P.X := InvCumDistT( P.Y, _FreeD );
+
+               _CurvI[ I ] := TSingle2D( P );
+          end;
      end;
 end;
 
@@ -167,15 +152,13 @@ procedure TForm1.CalcPoin;
 var
    P :TDouble2D;
 begin
-     if _MouseP < _MinP then _MouseP := _MinP
-                        else
-     if _MaxP < _MouseP then _MouseP := _MaxP;
+     _MouseP := Clamp( _MouseP, _MinP, _MaxP );
 
      P.X := InvCumDistT( _MouseP, _FreeD );
-     P.Y := _MouseP;
+     P.Y :=              _MouseP          ;
 
-     LabelPP.Text := FloatToStrF( P.X, TFloatFormat.ffFixed, 15, 8 );
-     LabelCD.Text := FloatToStrF( P.Y, TFloatFormat.ffFixed, 15, 8 );
+     LabelPP.Text := FloatToStrP( P.X, 8 );
+     LabelCD.Text := FloatToStr ( P.Y, 8 );
 
      _Poin.Pos := TSingle2D( P );
 end;
@@ -212,7 +195,7 @@ procedure TForm1.ScrollBar1Change(Sender: TObject);
 begin
      _FreeD := Power( 10, ScrollBar1.Max - ScrollBar1.Value );
 
-     LabelFD.Text := FloatToStrF( _FreeD, TFloatFormat.ffFixed, 15, 8 );
+     LabelFD.Text := FloatToStr( _FreeD, 8 );
 
      CalcCurvs;
      CalcPoin;
@@ -256,8 +239,9 @@ const
      MaxP :Double  = 1 - DOUBLE_EPS3;
      DivN :Integer = 1000;
 var
-   I :Integer;
+   N, I :Integer;
    P :Double;
+   S :String;
 begin
      with Memo1 do
      begin
@@ -267,35 +251,17 @@ begin
           begin
                Clear;
 
-               Add( 'P'
-                  + '	' + 'ν=   1'
-                  + '	' + 'ν=   2'
-                  + '	' + 'ν=   4'
-                  + '	' + 'ν=   8'
-                  + '	' + 'ν=  16'
-                  + '	' + 'ν=  32'
-                  + '	' + 'ν=  64'
-                  + '	' + 'ν= 128'
-                  + '	' + 'ν= 256'
-                  + '	' + 'ν= 512'
-                  + '	' + 'ν=1024' );
+               S := 'P';
+               for N := 0 to 10 do S := S + '	' + 'ν=' + IntToStr( BinPow( N ), 4, ' ' );
+               Add( S );
 
                for I := 0 to DivN do
                begin
                     P := ( MaxP - MinP ) / DivN * I + MinP;
 
-                    Add( P.ToString
-                       + '	' + InvCumDistT( P,    1 ).ToString
-                       + '	' + InvCumDistT( P,    2 ).ToString
-                       + '	' + InvCumDistT( P,    4 ).ToString
-                       + '	' + InvCumDistT( P,    8 ).ToString
-                       + '	' + InvCumDistT( P,   16 ).ToString
-                       + '	' + InvCumDistT( P,   32 ).ToString
-                       + '	' + InvCumDistT( P,   64 ).ToString
-                       + '	' + InvCumDistT( P,  128 ).ToString
-                       + '	' + InvCumDistT( P,  256 ).ToString
-                       + '	' + InvCumDistT( P,  512 ).ToString
-                       + '	' + InvCumDistT( P, 1024 ).ToString );
+                    S := FloatToStr( P, 8 );
+                    for N := 0 to 10 do S := S + '	' + FloatToStr( InvCumDistT( P, BinPow( N ) ), 8 );
+                    Add( S );
                end;
           end;
 
