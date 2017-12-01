@@ -23,6 +23,8 @@ object Form1: TForm1
     object Memo1: TMemo
       Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
       DataDetectorTypes = []
+      StyledSettings = [Size, Style, FontColor]
+      TextSettings.Font.Family = 'Calibri'
       Align = Client
       Margins.Left = 10.000000000000000000
       Margins.Right = 10.000000000000000000
@@ -43,69 +45,78 @@ object Form1: TForm1
       StyleLookup = 'pushpanel'
       TabOrder = 1
       object LabelFDc: TLabel
-        StyledSettings = [Size, Style, FontColor]
+        StyledSettings = [Style, FontColor]
         Position.X = 5.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 65.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.Font.Family = 'Calibri'
+        TextSettings.Font.Size = 15.000000000000000000
         TextSettings.HorzAlign = Trailing
-        Text = 'FreeDegr :'
+        Text = #957' :'
         TabOrder = 5
       end
       object LabelFD: TLabel
-        StyledSettings = [Size, Style, FontColor]
-        Position.X = 75.000000000000000000
+        StyledSettings = [Style, FontColor]
+        Position.X = 80.000000000000000000
         Position.Y = 10.000000000000000000
         Size.Width = 105.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.Font.Family = 'Calibri'
+        TextSettings.Font.Size = 15.000000000000000000
+        Text = '1234.12345678'
         TabOrder = 0
       end
       object LabelPPc: TLabel
-        StyledSettings = [Size, Style, FontColor]
+        StyledSettings = [Style, FontColor]
         Position.X = 5.000000000000000000
         Position.Y = 60.000000000000000000
-        Size.Width = 65.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.Font.Family = 'Calibri'
+        TextSettings.Font.Size = 15.000000000000000000
         TextSettings.HorzAlign = Trailing
-        Text = 'PercPoin :'
+        Text = 'x :'
         TabOrder = 4
       end
       object LabelPP: TLabel
-        StyledSettings = [Size, Style, FontColor]
-        Position.X = 75.000000000000000000
+        StyledSettings = [Style, FontColor]
+        Position.X = 80.000000000000000000
         Position.Y = 60.000000000000000000
         Size.Width = 105.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.Font.Family = 'Calibri'
+        TextSettings.Font.Size = 15.000000000000000000
+        Text = '0.12345678'
         TabOrder = 2
       end
       object LabelCDc: TLabel
-        StyledSettings = [Size, Style, FontColor]
+        StyledSettings = [Style, FontColor]
         Position.X = 5.000000000000000000
         Position.Y = 35.000000000000000000
-        Size.Width = 65.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.Font.Family = 'Calibri'
+        TextSettings.Font.Size = 15.000000000000000000
         TextSettings.HorzAlign = Trailing
-        Text = 'CumuDist :'
+        Text = 'P( X '#8804' x ) :'
         TabOrder = 3
       end
       object LabelCD: TLabel
-        StyledSettings = [Size, Style, FontColor]
-        Position.X = 75.000000000000000000
+        StyledSettings = [Style, FontColor]
+        Position.X = 80.000000000000000000
         Position.Y = 35.000000000000000000
         Size.Width = 105.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'MS Gothic'
+        TextSettings.Font.Family = 'Calibri'
+        TextSettings.Font.Size = 15.000000000000000000
+        Text = '0.12345678'
         TabOrder = 1
       end
       object Button1: TButton

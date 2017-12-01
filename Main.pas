@@ -34,7 +34,7 @@ type
   private
     { private 宣言 }
     _MouseS :TShiftState;
-    _MouseP :Single;
+    _MouseP :Double;
     _MinP   :Single;
     _MaxP   :Single;
     ///// メソッド
@@ -174,8 +174,8 @@ begin
      P.X := InvCumDistT( _MouseP, _FreeD );
      P.Y := _MouseP;
 
-     LabelPP.Text := FloatToStrF( P.X, TFloatFormat.ffFixed, 15, 10 );
-     LabelCD.Text := FloatToStrF( P.Y, TFloatFormat.ffFixed, 15, 10 );
+     LabelPP.Text := FloatToStrF( P.X, TFloatFormat.ffFixed, 15, 8 );
+     LabelCD.Text := FloatToStrF( P.Y, TFloatFormat.ffFixed, 15, 8 );
 
      _Poin.Pos := TSingle2D( P );
 end;
@@ -212,7 +212,7 @@ procedure TForm1.ScrollBar1Change(Sender: TObject);
 begin
      _FreeD := Power( 10, ScrollBar1.Max - ScrollBar1.Value );
 
-     LabelFD.Text := FloatToStrF( _FreeD, TFloatFormat.ffFixed, 15, 10 );
+     LabelFD.Text := FloatToStrF( _FreeD, TFloatFormat.ffFixed, 15, 8 );
 
      CalcCurvs;
      CalcPoin;
