@@ -8,11 +8,11 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 ｔ分布の確率密度関数は [ベータ関数](https://ja.wikipedia.org/wiki/ベータ関数)([Beta function](https://en.wikipedia.org/wiki/Beta_function)) を用いて以下のように定義される。
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{P}\left({x}\right)\mathrm{{=}}\frac{1}{{2}\sqrt{\mathit{\nu}}{\mathrm{B}}\left({\frac{1}{2}\mathrm{,}\frac{\mathit{\nu}}{2}}\right)}{\left({{1}\mathrm{{&plus;}}\frac{{x}^{2}}{\mathit{\nu}}}\right)}^{\mathrm{{-}}\frac{\mathit{\nu}\mathrm{{&plus;}}{1}}{2}})　`...(1)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B1%7D%7B%7B2%7D%5Csqrt%7B%5Cmathit%7B%5Cnu%7D%7D%7B%5Cmathrm%7BB%7D%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cfrac%7B%7Bx%7D%5E%7B2%7D%7D%7B%5Cmathit%7B%5Cnu%7D%7D%7D%5Cright%29%7D%5E%7B%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%7B2%7D%7D)　`...(1)`
 
 ベータ関数は [ガンマ関数](https://ja.wikipedia.org/wiki/ガンマ関数)([Beta function](https://en.wikipedia.org/wiki/Beta_function)) を用いて以下のように定義される。
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{\mathrm{B}}\left({a\mathrm{,}b}\right)\mathrm{{=}}\mathop{\int}\nolimits_{0}\nolimits^{1}{{t}^{{a}\mathrm{{-}}{1}}{\left({{1}\mathrm{{-}}{t}}\right)}^{{b}\mathrm{{-}}{1}}dt}\mathrm{{=}}\frac{\Gamma\left({a}\right)\Gamma\left({b}\right)}{\Gamma\left({{a}\mathrm{{&plus;}}{b}}\right)})　`...(2)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%5Cmathrm%7BB%7D%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B0%7D%5Cnolimits%5E%7B1%7D%7B%7Bt%7D%5E%7B%7Ba%7D%5Cmathrm%7B%7B-%7D%7D%7B1%7D%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bt%7D%7D%5Cright%29%7D%5E%7B%7Bb%7D%5Cmathrm%7B%7B-%7D%7D%7B1%7D%7Ddt%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%5CGamma%5Cleft%28%7Ba%7D%5Cright%29%5CGamma%5Cleft%28%7Bb%7D%5Cright%29%7D%7B%5CGamma%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%7D%5Cright%29%7D)　`...(2)`
 
 ガンマ関数の計算方法は以下を参照のこと。
 
@@ -26,25 +26,24 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 ｔ分布の累積分布関数は、[下側確率](https://www.weblio.jp/content/下側確率)(Lower tailed probability) とも呼ばれ、[正則不完全ベータ関数](https://ja.wikipedia.org/wiki/不完全ベータ関数)([Regularized incomplete beta function](https://en.wikipedia.org/wiki/Beta_function#Incomplete_beta_function)) を用いて以下のように定義される。
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{P}\left({{X}\mathrm{\leq}{x}}\right)\mathrm{{=}}\mathop{\int}\nolimits_{\mathrm{{-}}\mathrm{\infty}}\nolimits^{x}{{P}\left({x}\right){dx}}\mathrm{{=}}{I}_{\mathit{\alpha}\left({x}\right)}\left({\frac{\mathit{\nu}}{2}\mathrm{,}\frac{\mathit{\nu}}{2}}\right))　`...(3)`  
-> ![](https://latex.codecogs.com/svg.latex?\large&space;\mathit{\alpha}\left({x}\right)\mathrm{{=}}\frac{{x}\mathrm{{&plus;}}\sqrt{{x}^{2}\mathrm{{&plus;}}\mathit{\nu}}}{2\sqrt{{x}^{2}\mathrm{{&plus;}}\mathit{\nu}}})  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7BX%7D%5Cmathrm%7B%5Cleq%7D%7Bx%7D%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B-%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%5Cnolimits%5E%7Bx%7D%7B%7BP%7D%5Cleft%28%7Bx%7D%5Cright%29%7Bdx%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Calpha%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29)　`...(3)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Calpha%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bx%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Csqrt%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D%7D%7B2%5Csqrt%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D%7D)  
 
 正則不完全ベータ関数は [不完全ベータ関数](https://ja.wikipedia.org/wiki/不完全ベータ関数)([Incomplete beta function](https://en.wikipedia.org/wiki/Beta_function#Incomplete_beta_function)) と標準のガンマ関数を用いて以下のように定義される。
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{I}_{z}\left({a\mathrm{,}b}\right)\mathrm{{=}}\frac{{\mathrm{B}}_{z}\left({a\mathrm{,}b}\right)}{{\mathrm{B}}\left({a\mathrm{,}b}\right)})　`...(4)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BI%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7B%5Cmathrm%7BB%7D%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%7D%7B%7B%5Cmathrm%7BB%7D%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%7D)　`...(4)`
 
 不完全ベータ関数は [ガウスの超幾何関数](https://ja.wikipedia.org/wiki/超幾何級数)([Gaussian hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function)) を用いて以下のように定義される。しかしこのままでは、桁落ちが著しく数値計算に向かない。
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{\mathrm{B}}_{z}\left({a\mathrm{,}b}\right)\mathrm{{=}}\frac{{z}^{a}}{a}{{}_{2}{F}_{1}}\left({{a}{\mathrm{,}}{1}\mathrm{{-}}{b}{\mathrm{;}}{a}\mathrm{{&plus;}}{1}{\mathrm{;}}{z}}\right))　`...(5)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%5Cmathrm%7BB%7D%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bz%7D%5E%7Ba%7D%7D%7Ba%7D%7B%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%7D%5Cleft%28%7B%7Ba%7D%7B%5Cmathrm%7B%2C%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(5)`  
 
 そこで我々の実装では、以下の [オイラーの変換公式(Euler's transformation)](https://en.wikipedia.org/wiki/Hypergeometric_function#Fractional_linear_transformations) を用いて、
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{}_{2}{F}_{1}\left({a\mathrm{,}b\mathrm{;}c\mathrm{;}z}\right)\mathrm{{=}}{\left({{1}\mathrm{{-}}{z}}\right)}^{{c}\mathrm{{-}}{a}\mathrm{{-}}{b}}{}_{2}{F}_{1}\left({{c}\mathrm{{-}}{a}{\mathrm{,}}{c}\mathrm{{-}}{b}{\mathrm{;}}{c}{\mathrm{;}}{z}}\right))　`...(6)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%3B%7Dc%5Cmathrm%7B%3B%7Dz%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7B%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Ba%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7D%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%5Cleft%28%7B%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Ba%7D%7B%5Cmathrm%7B%2C%7D%7D%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bc%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(6)`
 
 数値的安定性を高めた以下の定義式を採用している。
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{\mathrm{B}}_{z}\left({a\mathrm{,}b}\right)\mathrm{{=}}\frac{{z}^{a}{\left({{1}\mathrm{{-}}{z}}\right)}^{b}}{a}&space;{{}_{2}{F}_{1}}\left({{1}{\mathrm{,}}{a}\mathrm{{&plus;}}{b}{\mathrm{;}}{a}\mathrm{{&plus;}}{1}{\mathrm{;}}{z}}\right))　`...(7)`
-
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%5Cmathrm%7BB%7D%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bz%7D%5E%7Ba%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7Bb%7D%7D%7Ba%7D%7B%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%7D%5Cleft%28%7B%7B1%7D%7B%5Cmathrm%7B%2C%7D%7D%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(7)`
 
 ```Pascal
 function HypGeo21( const A_,B_,C_,X_:Double ) :Double;
@@ -71,8 +70,8 @@ end;
 
 そこで、より数値的に安定な [両側確率](https://www.weblio.jp/content/両側確率)([Two tailed probability](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)) の定義式を利用する。
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{P}\left({{x}\mathrm{\leq}\left|{X}\right|}\right)\mathrm{{=}}\mathop{\int}\nolimits_{\mathrm{{-}}\mathrm{\infty}}\nolimits^{x}{{P}\left({x}\right){dx}}\mathrm{{&plus;}}\mathop{\int}\nolimits_{x}\nolimits^{\mathrm{{&plus;}}\mathrm{\infty}}{{P}\left({x}\right){dx}}\mathrm{{=}}{I}_{\mathit{\beta}\left({x}\right)}\left({\frac{\mathit{\nu}}{2}\mathrm{,}\frac{1}{2}}\right))　`...(8)`  
-> ![](https://latex.codecogs.com/svg.latex?\large&space;\mathit{\beta}\left({x}\right)\mathrm{{=}}\frac{\mathit{\nu}}{{x}^{2}\mathrm{{&plus;}}\mathit{\nu}})  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B-%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%5Cnolimits%5E%7Bx%7D%7B%7BP%7D%5Cleft%28%7Bx%7D%5Cright%29%7Bdx%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7Bx%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%7B%7BP%7D%5Cleft%28%7Bx%7D%5Cright%29%7Bdx%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B1%7D%7B2%7D%7D%5Cright%29)　`...(8)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D)  
 
 下側確率`CumDistT`は、以下のように両側確率`Cum2DistT`を繋ぎ合わせることで定義可能である。
 
@@ -95,12 +94,12 @@ end;
 
 そこで正則不完全ベータ関数の関係式を用いて、
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{I}_{z}\left({{a}{\mathrm{,}}\hspace{0.33em}{b}}\right)\mathrm{{=}}{1}\mathrm{{-}}{I}_{{1}\mathrm{{-}}{z}}\left({{b}{\mathrm{,}}\hspace{0.33em}{a}}\right))　`...(10)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BI%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cleft%28%7Bb%5Cmathrm%7B%2C%7Da%7D%5Cright%29)　`...(10)`
 
 以下のように引数の順序を交換した定義式を併用する。
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{P}\left({{x}\mathrm{\leq}\left|{X}\right|}\right)\mathrm{{=}}{1}\mathrm{{-}}{I}_{\mathit{\gamma}\left({x}\right)}\left({\frac{1}{2}{\mathrm{,}}\hspace{0.2em}\frac{\mathit{\nu}}{2}}\right))　`...(11)`  
-> ![](https://latex.codecogs.com/svg.latex?\large&space;\mathit{\gamma}\left({x}\right)\mathrm{{=}}\frac{{x}^{2}}{{x}^{2}\mathrm{{&plus;}}\mathit{\nu}}) 
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29)　`...(11)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bx%7D%5E%7B2%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D) 
 
 もっともこの式`(11)`であっても、下図のように絶対値の大きい定義域では発散してしまうが、それぞれの有効な領域に応じて定義式を切り替えることで、`x`の全域を高精度にサポートすることができる。
 
