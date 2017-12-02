@@ -33,15 +33,18 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 > ![](https://latex.codecogs.com/svg.latex?\large&space;{I}_{z}\left({a\mathrm{,}b}\right)\mathrm{{=}}\frac{{\mathrm{B}}_{z}\left({a\mathrm{,}b}\right)}{{\mathrm{B}}\left({a\mathrm{,}b}\right)})　`...(4)`
 
-不完全ベータ関数は [ガウスの超幾何関数](https://ja.wikipedia.org/wiki/超幾何級数)([Gaussian hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function)) を用いて以下のように定義される。
+不完全ベータ関数は [ガウスの超幾何関数](https://ja.wikipedia.org/wiki/超幾何級数)([Gaussian hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function)) を用いて以下のように定義される。しかしこのままでは、桁落ちが著しく数値計算に向かない。
 
 > ![](https://latex.codecogs.com/svg.latex?\large&space;{\mathrm{B}}_{z}\left({a\mathrm{,}b}\right)\mathrm{{=}}\frac{{z}^{a}}{a}{{}_{2}{F}_{1}}\left({{a}{\mathrm{,}}{1}\mathrm{{-}}{b}{\mathrm{;}}{a}\mathrm{{&plus;}}{1}{\mathrm{;}}{z}}\right))　`...(5)`  
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{\mathrm{B}}_{z}\left({a\mathrm{,}b}\right)\mathrm{{=}}\frac{{z}^{a}{\left({{1}\mathrm{{-}}{z}}\right)}^{b}}{a}&space;{{}_{2}{F}_{1}}\left({{1}{\mathrm{,}}{a}\mathrm{{&plus;}}{b}{\mathrm{;}}{a}\mathrm{{&plus;}}{1}{\mathrm{;}}{z}}\right))　`...(6)`
+そこで我々の実装では、以下の [オイラーの変換公式(Euler's transformation)](https://en.wikipedia.org/wiki/Hypergeometric_function#Fractional_linear_transformations) を用いて、
 
-なお定義式`(5)`の方は桁落ちが激しく発散しやすいため、我々の実装では以下の [オイラーの変換公式(Euler's transformation)](https://en.wikipedia.org/wiki/Hypergeometric_function#Fractional_linear_transformations) を用いて変形させた定義式`(6)`の方を採用している。
+> ![](https://latex.codecogs.com/svg.latex?\large&space;{}_{2}{F}_{1}\left({a\mathrm{,}b\mathrm{;}c\mathrm{;}z}\right)\mathrm{{=}}{\left({{1}\mathrm{{-}}{z}}\right)}^{{c}\mathrm{{-}}{a}\mathrm{{-}}{b}}{}_{2}{F}_{1}\left({{c}\mathrm{{-}}{a}{\mathrm{,}}{c}\mathrm{{-}}{b}{\mathrm{;}}{c}{\mathrm{;}}{z}}\right))　`...(6)`
 
-> ![](https://latex.codecogs.com/svg.latex?\large&space;{}_{2}{F}_{1}\left({a\mathrm{,}b\mathrm{;}c\mathrm{;}z}\right)\mathrm{{=}}{\left({{1}\mathrm{{-}}{z}}\right)}^{{c}\mathrm{{-}}{a}\mathrm{{-}}{b}}{}_{2}{F}_{1}\left({{c}\mathrm{{-}}{a}{\mathrm{,}}{c}\mathrm{{-}}{b}{\mathrm{;}}{c}{\mathrm{;}}{z}}\right))　`...(7)`
+数値的安定性を高めた以下の定義式を採用している。
+
+> ![](https://latex.codecogs.com/svg.latex?\large&space;{\mathrm{B}}_{z}\left({a\mathrm{,}b}\right)\mathrm{{=}}\frac{{z}^{a}{\left({{1}\mathrm{{-}}{z}}\right)}^{b}}{a}&space;{{}_{2}{F}_{1}}\left({{1}{\mathrm{,}}{a}\mathrm{{&plus;}}{b}{\mathrm{;}}{a}\mathrm{{&plus;}}{1}{\mathrm{;}}{z}}\right))　`...(7)`
+
 
 ```Pascal
 function HypGeo21( const A_,B_,C_,X_:Double ) :Double;
@@ -62,22 +65,33 @@ begin
 end;
 ```
 
-しかし定義式`(3)`は、一つの式で`x`の全域をサポートするものの、下図のように絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
+しかし定義式`(3)`は、下側確率を直接計算できるものの、下図のように絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
 
-![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C%CE%BD)_100.png)
+> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C%CE%BD)_100.png)
 
 そこで、より数値的に安定な [両側確率](https://www.weblio.jp/content/両側確率)([Two tailed probability](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)) の定義式を利用する。
 
 > ![](https://latex.codecogs.com/svg.latex?\large&space;{P}\left({{x}\mathrm{\leq}\left|{X}\right|}\right)\mathrm{{=}}\mathop{\int}\nolimits_{\mathrm{{-}}\mathrm{\infty}}\nolimits^{x}{{P}\left({x}\right){dx}}\mathrm{{&plus;}}\mathop{\int}\nolimits_{x}\nolimits^{\mathrm{{&plus;}}\mathrm{\infty}}{{P}\left({x}\right){dx}}\mathrm{{=}}{I}_{\mathit{\beta}\left({x}\right)}\left({\frac{\mathit{\nu}}{2}\mathrm{,}\frac{1}{2}}\right))　`...(8)`  
 > ![](https://latex.codecogs.com/svg.latex?\large&space;\mathit{\beta}\left({x}\right)\mathrm{{=}}\frac{\mathit{\nu}}{{x}^{2}\mathrm{{&plus;}}\mathit{\nu}})  
 
-片側確率は、両側確率を負の定義域へ反転させることで定義可能である。
+下側確率`CumDistT`は、以下のように両側確率`Cum2DistT`を繋ぎ合わせることで定義可能である。
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7BX%7D%5Cmathrm%7B%5Cleq%7D%7Bx%7D%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cleft%5C%7B%7B%5Cbegin%7Barray%7D%7Bll%7D%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B&plus;%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7Bx%5Cmathrm%7B%3E%7D0%7D%5C%5C%20%7B%5Cfrac%7B1%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3D%7D%7D%7B0%7D%7D%5C%5C%20%7B%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B-%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7Bx%5Cmathrm%7B%3C%7D0%7D%5Cend%7Barray%7D%7D%5Cright.)　`...(9)`
 
+```pascal
+function CumDistT( const X_,V_:Double ) :Double;
+var
+   C :Double;
+begin
+     C := Cum2DistT( X_, V_ );
+     if X_ < 0 then Result :=     C / 2
+               else Result := 1 - C / 2;
+end;
+```
+
 しかしこの定義式`(8)`は、下図のように絶対値の小さい定義域において精度が大幅に低下する。
 
-![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C1)_5.png)
+> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C1)_5.png)
 
 そこで正則不完全ベータ関数の関係式を用いて、
 
@@ -90,20 +104,18 @@ end;
 
 もっともこの式`(11)`であっても、下図のように絶対値の大きい定義域では発散してしまうが、それぞれの有効な領域に応じて定義式を切り替えることで、`x`の全域を高精度にサポートすることができる。
 
-![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(1%2C%CE%BD)_100.png)
+> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(1%2C%CE%BD)_100.png)
 
 我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
 
 ```pascal
-function CumDistT( const X_,V_:Double ) :Double;
+function Cum2DistT( const X_,V_:Double ) :Double;
 var
-   X2, B :Double;
+   X2 :Double;
 begin
      X2 := Pow2( X_ );
-     if 100 * X2 < V_ then B := 1 - RegIncBeta( X2 / ( X2 + V_ ), 1  / 2, V_ / 2 )
-                      else B :=     RegIncBeta( V_ / ( X2 + V_ ), V_ / 2, 1  / 2 );
-     if X_ < 0 then Result :=     B / 2
-               else Result := 1 - B / 2;
+     if 100 * X2 < V_ then Result := 1 - RegIncBeta( X2 / ( X2 + V_ ), 1  / 2, V_ / 2 )
+                      else Result :=     RegIncBeta( V_ / ( X2 + V_ ), V_ / 2, 1  / 2 );
 end;
 ```
 
