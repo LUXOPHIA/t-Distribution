@@ -48,7 +48,7 @@ object Form1: TForm1
         StyledSettings = [Style, FontColor]
         Position.X = 5.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 70.000000000000000000
+        Size.Width = 65.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'Calibri'
@@ -59,9 +59,9 @@ object Form1: TForm1
       end
       object LabelFD: TLabel
         StyledSettings = [Style, FontColor]
-        Position.X = 80.000000000000000000
+        Position.X = 75.000000000000000000
         Position.Y = 10.000000000000000000
-        Size.Width = 105.000000000000000000
+        Size.Width = 110.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'Calibri'
@@ -73,7 +73,7 @@ object Form1: TForm1
         StyledSettings = [Style, FontColor]
         Position.X = 5.000000000000000000
         Position.Y = 60.000000000000000000
-        Size.Width = 70.000000000000000000
+        Size.Width = 65.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'Calibri'
@@ -84,9 +84,9 @@ object Form1: TForm1
       end
       object LabelPP: TLabel
         StyledSettings = [Style, FontColor]
-        Position.X = 80.000000000000000000
+        Position.X = 75.000000000000000000
         Position.Y = 60.000000000000000000
-        Size.Width = 105.000000000000000000
+        Size.Width = 110.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'Calibri'
@@ -98,7 +98,7 @@ object Form1: TForm1
         StyledSettings = [Style, FontColor]
         Position.X = 5.000000000000000000
         Position.Y = 35.000000000000000000
-        Size.Width = 70.000000000000000000
+        Size.Width = 65.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'Calibri'
@@ -109,9 +109,9 @@ object Form1: TForm1
       end
       object LabelCD: TLabel
         StyledSettings = [Style, FontColor]
-        Position.X = 80.000000000000000000
+        Position.X = 75.000000000000000000
         Position.Y = 35.000000000000000000
-        Size.Width = 105.000000000000000000
+        Size.Width = 110.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'Calibri'
