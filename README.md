@@ -66,7 +66,7 @@ end;
 
 しかし定義式`(3)`は、下側確率を直接計算できるものの、下図のように絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
 
-> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C%CE%BD)_100.png)
+> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png)
 
 そこで、より数値的に安定な [両側確率](https://www.weblio.jp/content/両側確率)([Two tailed probability](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)) の定義式を利用する。
 
@@ -90,7 +90,7 @@ end;
 
 しかしこの定義式`(8)`は、下図のように絶対値の小さい定義域において精度が大幅に低下する。
 
-> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(%CE%BD%2C1)_5.png)
+> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_5.png)
 
 そこで正則不完全ベータ関数の関係式を用いて、
 
@@ -103,7 +103,7 @@ end;
 
 もっともこの式`(11)`であっても、下図のように絶対値の大きい定義域では発散してしまうが、それぞれの有効な領域に応じて定義式を切り替えることで、`x`の全域を高精度にサポートすることができる。
 
-> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF(1%2C%CE%BD)_100.png)
+> ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_100.png)
 
 我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
 
