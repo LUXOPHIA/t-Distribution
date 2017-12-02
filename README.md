@@ -4,7 +4,7 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 ----
 ## ■ [確率密度関数](https://ja.wikipedia.org/wiki/確率密度関数)([Probability density function](https://en.wikipedia.org/wiki/Probability_density_function))
 
-![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png)  
+[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png) ](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png) 
 
 ｔ分布の確率密度関数は [ベータ関数](https://ja.wikipedia.org/wiki/ベータ関数)([Beta function](https://en.wikipedia.org/wiki/Beta_function)) を用いて以下のように定義される。
 
@@ -16,13 +16,13 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 ガンマ関数の計算方法は以下を参照のこと。
 
-> ![](https://media.githubusercontent.com/media/LUXOPHIA/GammaFunc/master/--------/Gamma.png)  
+> [![](https://media.githubusercontent.com/media/LUXOPHIA/GammaFunc/master/--------/Gamma.png)](https://github.com/LUXOPHIA/GammaFunc)  
 > \* [GammaFunc: How to compute the Gamma function.](https://github.com/LUXOPHIA/GammaFunc)：[LUXOPHIA](https://github.com/LUXOPHIA)：[GitHub](https://github.com)
 
 ----
 ## ■ [累積分布関数](https://ja.wikipedia.org/wiki/確率分布#.E5.88.86.E5.B8.83.E9.96.A2.E6.95.B0)([CDF：Cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function))
 
-![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF.png)  
+[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF.png) 
 
 ｔ分布の累積分布関数は、[下側確率](https://www.weblio.jp/content/下側確率)(Lower tailed probability) とも呼ばれ、[正則不完全ベータ関数](https://ja.wikipedia.org/wiki/不完全ベータ関数)([Regularized incomplete beta function](https://en.wikipedia.org/wiki/Beta_function#Incomplete_beta_function)) を用いて以下のように定義される。
 
@@ -128,7 +128,7 @@ end;
 ----
 ## ■ 逆累積分布関数([Quantile function](https://en.wikipedia.org/wiki/Quantile_function))
 
-![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-InvCDF.png)
+[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-InvCDF.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-InvCDF.png)
 
 逆累積分布関数は累積分布関数の [逆関数](https://ja.wikipedia.org/wiki/逆写像#.E9.80.86.E5.87.BD.E6.95.B0)([Inverse function](https://en.wikipedia.org/wiki/Inverse_function#Inverses_in_calculus)) であり、与えられた下側確率に対応する`x`の値、つまり [パーセント点](https://ja.wikipedia.org/wiki/分位数#.E3.83.91.E3.83.BC.E3.82.BB.E3.83.B3.E3.82.BF.E3.82.A4.E3.83.AB)([Percentage point](https://en.wikipedia.org/wiki/Percentage_point)) を逆算する関数である。近似式を使った解法が一般的ではあるが、我々の実装では [ニュートン法](https://ja.wikipedia.org/wiki/ニュートン法)([Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method)) を用いて厳密に解を求めている。
 
