@@ -39,7 +39,7 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 そこで我々の実装では、以下の [オイラーの変換公式(Euler's transformation)](https://en.wikipedia.org/wiki/Hypergeometric_function#Fractional_linear_transformations) を用いて、
 
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%3B%7Dc%5Cmathrm%7B%3B%7Dz%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7B%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Ba%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7D%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%5Cleft%28%7B%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Ba%7D%7B%5Cmathrm%7B%2C%7D%7D%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bc%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(6)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%3B%7Dc%5Cmathrm%7B%3B%7Dz%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7B%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Ba%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7D%7B%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%7D%5Cleft%28%7B%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Ba%7D%7B%5Cmathrm%7B%2C%7D%7D%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bc%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(6)`
 
 数値的安定性を高めた以下の定義式を採用している。
 
