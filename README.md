@@ -73,7 +73,7 @@ end;
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B-%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B-%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B1%7D%7B2%7D%7D%5Cright%29)　`...(8)`  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D)  
 
-下側確率`CumDistT`は、以下のように両側確率`Cum2DistT`を繋ぎ合わせることで定義可能である。
+下側確率`CumDistT`は、以下のように両側確率`Cum2DistT`を繋ぎ合わせることで再定義可能である。
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7BX%7D%5Cmathrm%7B%5Cleq%7D%7Bx%7D%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cleft%5C%7B%7B%5Cbegin%7Barray%7D%7Bll%7D%7B%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B-%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3C%7D%7D%7B0%7D%7D%5C%5C%20%7B%5Cfrac%7B1%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3D%7D%7D%7B0%7D%7D%5C%5C%20%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B&plus;%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3E%7D%7D%7B0%7D%7D%5Cend%7Barray%7D%7D%5Cright.)　`...(9)`
 
@@ -88,7 +88,7 @@ begin
 end;
 ```
 
-しかしこの定義式`(8)`は、下図のように絶対値の小さい定義域において精度が大幅に低下する。
+しかし定義式`(8)`は、下図のように絶対値の小さい定義域において精度が大幅に低下する。
 
 > ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_5.png)
 
@@ -123,12 +123,12 @@ end;
 
 ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-InvCDF.png)
 
-逆累積分布関数は累積分布関数の [逆関数](https://ja.wikipedia.org/wiki/逆写像#.E9.80.86.E5.87.BD.E6.95.B0)([Inverse function](https://en.wikipedia.org/wiki/Inverse_function#Inverses_in_calculus)) であり、与えられた[上側確率](https://www.weblio.jp/content/上側確率)([Upper probability](https://en.wikipedia.org/wiki/Upper_and_lower_probabilities)) に対応する`x`の値、つまり [パーセント点](https://ja.wikipedia.org/wiki/分位数#.E3.83.91.E3.83.BC.E3.82.BB.E3.83.B3.E3.82.BF.E3.82.A4.E3.83.AB)([Percentage point](https://en.wikipedia.org/wiki/Percentage_point)) を逆算する関数である。近似式を使った解法が一般的ではあるが、我々の実装では [ニュートン法](https://ja.wikipedia.org/wiki/ニュートン法)([Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method)) を用いて厳密に解を求めている。
+逆累積分布関数は累積分布関数の [逆関数](https://ja.wikipedia.org/wiki/逆写像#.E9.80.86.E5.87.BD.E6.95.B0)([Inverse function](https://en.wikipedia.org/wiki/Inverse_function#Inverses_in_calculus)) であり、与えられた下側確率に対応する`x`の値、つまり [パーセント点](https://ja.wikipedia.org/wiki/分位数#.E3.83.91.E3.83.BC.E3.82.BB.E3.83.B3.E3.82.BF.E3.82.A4.E3.83.AB)([Percentage point](https://en.wikipedia.org/wiki/Percentage_point)) を逆算する関数である。近似式を使った解法が一般的ではあるが、我々の実装では [ニュートン法](https://ja.wikipedia.org/wiki/ニュートン法)([Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method)) を用いて厳密に解を求めている。
 
 > ![](https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif)  
 > \* [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method)：[Wikipedia](https://www.wikipedia.org)
 
-分布関数を積分したものが累積分布関数なので、ｔ累積分布関数`CumDistT`の微分値はｔ分布関数`DistT`そのものとなる。我々は以下のように、関数値と微分値を同時に出力する関数を実装した。
+分布関数を積分したものが累積分布関数なので、累積ｔ分布関数`CumDistT`の微分値はｔ分布関数`DistT`そのものとなる。我々は以下のように、関数値と微分値を同時に出力する関数を実装した。
 
 ```Pascal
 function CumDistT( const X_:TdDouble; const V_:Double ) :TdDouble;
