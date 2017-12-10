@@ -47,7 +47,13 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%5Cmathrm%7BB%7D%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bz%7D%5E%7Ba%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7Bb%7D%7D%7Ba%7D%7B%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%7D%5Cleft%28%7B%7B1%7D%7B%5Cmathrm%7B%2C%7D%7D%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(7)`
 
-なお、ガウスの超幾何関数は以下のように実装できる。
+なお、超幾何関数は以下の [超幾何級数](https://ja.wikipedia.org/wiki/超幾何級数) によって計算することができ、
+
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%2C%7Dc%5Cmathrm%7B%2C%7Dx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Csum%7D%5Climits_%7B%7Bn%7D%5Cmathrm%7B%7B%3D%7D%7D%7B0%7D%7D%5Climits%5E%7B%5Cmathrm%7B%5Cinfty%7D%7D%7B%5Cfrac%7B%7B%5Cleft%28%7Ba%7D%5Cright%29%7D_%7Bn%7D%7B%5Cleft%28%7Bb%7D%5Cright%29%7D_%7Bn%7D%7D%7B%7B%5Cleft%28%7Bc%7D%5Cright%29%7D_%7Bn%7Dn%5Cmathrm%7B%21%7D%7D%7D%7Bx%7D%5E%7Bn%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Csum%7D%5Climits_%7B%7Bn%7D%5Cmathrm%7B%7B%3D%7D%7D%7B0%7D%7D%5Climits%5E%7B%5Cmathrm%7B%5Cinfty%7D%7D%7B%7BP%7D_%7Bn%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%2C%7Dc%5Cmathrm%7B%2C%7Dx%7D%5Cright%29%7D)　`...(8)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D_%7B0%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%2C%7Dc%5Cmathrm%7B%2C%7Dx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D)  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D_%7B%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%2C%7Dc%5Cmathrm%7B%2C%7Dx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Bb%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Bc%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%7D%7BxP%7D_%7Bn%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%2C%7Dc%5Cmathrm%7B%2C%7Dx%7D%5Cright%29)
+
+具体的な実装は以下のようになる。
 
 ```Pascal
 function HypGeo21( const A_,B_,C_,X_:Double ) :Double;
@@ -76,7 +82,7 @@ end;
 
 そこで、より数値的に安定な [両側確率](https://www.weblio.jp/content/両側確率)([Two tailed probability](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)) の定義式を利用する。
 
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B-%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B-%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B1%7D%7B2%7D%7D%5Cright%29)　`...(8)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B-%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B-%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B1%7D%7B2%7D%7D%5Cright%29)　`...(9)`  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D)  
 
 なお、両側確率関数は原点で微分不可能なので、後述のニュートン法などを適用する際には注意が必要である。
@@ -85,7 +91,7 @@ end;
 
 下側確率`CumDistT`は、以下のように両側確率`Cum2DistT`を繋ぎ合わせることで再定義可能である。
 
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7BX%7D%5Cmathrm%7B%5Cleq%7D%7Bx%7D%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cleft%5C%7B%7B%5Cbegin%7Barray%7D%7Bll%7D%7B%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B-%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3C%7D%7D%7B0%7D%7D%5C%5C%20%7B%5Cfrac%7B1%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3D%7D%7D%7B0%7D%7D%5C%5C%20%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B&plus;%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3E%7D%7D%7B0%7D%7D%5Cend%7Barray%7D%7D%5Cright.)　`...(9)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7BX%7D%5Cmathrm%7B%5Cleq%7D%7Bx%7D%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cleft%5C%7B%7B%5Cbegin%7Barray%7D%7Bll%7D%7B%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B-%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3C%7D%7D%7B0%7D%7D%5C%5C%20%7B%5Cfrac%7B1%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3D%7D%7D%7B0%7D%7D%5C%5C%20%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B&plus;%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3E%7D%7D%7B0%7D%7D%5Cend%7Barray%7D%7D%5Cright.)　`...(10)`
 
 ```pascal
 function CumDistT( const X_,V_:Double ) :Double;
@@ -98,7 +104,7 @@ begin
 end;
 ```
 
-しかし定義式`(8)`を用いると、下図のように絶対値の小さい定義域において精度が大幅に低下する。
+しかし定義式`(9)`を用いると、下図のように絶対値の小さい定義域において精度が大幅に低下する。
 
 
 > |  |  |
@@ -107,14 +113,14 @@ end;
 
 そこで正則不完全ベータ関数の関係式を用いて、
 
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BI%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cleft%28%7Bb%5Cmathrm%7B%2C%7Da%7D%5Cright%29)　`...(10)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BI%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cleft%28%7Bb%5Cmathrm%7B%2C%7Da%7D%5Cright%29)　`...(11)`
 
 以下のように引数の順序を交換した定義式を併用する。
 
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29)　`...(11)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29)　`...(12)`  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bx%7D%5E%7B2%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D) 
 
-もっともこの式`(11)`を用いたとしても、下図のように絶対値の大きい定義域では発散してしまうが、それぞれの有効な領域に応じて定義式を切り替えることで、`x`の全域を高精度にサポートすることができる。
+もっともこの式`(12)`を用いたとしても、下図のように絶対値の大きい定義域では発散してしまうが、それぞれの有効な領域に応じて定義式を切り替えることで、`x`の全域を高精度にサポートすることができる。
 
 > |  |  |
 > |:-:|:-:|
