@@ -4,6 +4,8 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 ----
 ## ■ [確率密度関数](https://ja.wikipedia.org/wiki/確率密度関数)([Probability density function](https://en.wikipedia.org/wiki/Probability_density_function))
 
+正規分布に沿った平均と分散を有する母集団から、無造作に`n`個のサンプルを抜き出した上で、その子集団内での平均値を計算すると、当然誤差が発生して本来の母集団の平均値からはズレてしまうが、そのズレは確率的に発生し、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν = n-1`の[ｔ分布](https://ja.wikipedia.org/wiki/T分布)に沿うことが知られている。
+
 [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png) ](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png) 
 
 ｔ分布の確率密度関数は [ベータ関数](https://ja.wikipedia.org/wiki/ベータ関数)([Beta function](https://en.wikipedia.org/wiki/Beta_function)) を用いて以下のように定義される。
