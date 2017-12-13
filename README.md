@@ -173,11 +173,40 @@ begin
 end;
 ```
 
-すると、不完全ベータ関数の引数のうち、`b`の方が常に`1/2`という小さな値になるので計算が安定化する。
+式`(9)`を利用すると、不完全ベータ関数の引数`a,b`のうち、`b`の方が常に`1/2`という小さな値となるので、下図のように計算が安定する。
+しかし今度は逆に、絶対値の小さい定義域において精度が大幅に低下してしまう。
 
 > |  |  |
 > |:-:|:-:|
 > | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_5.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_5.png) | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_100.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_100.png) | 
+
+そこで正則不完全ベータ関数の関係式を用いて、
+
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BI%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cleft%28%7Bb%5Cmathrm%7B%2C%7Da%7D%5Cright%29)　`...(12)`
+
+以下のように引数の順序を交換した定義式を併用する。
+
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29)　`...(13)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bx%7D%5E%7B2%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D) 
+
+もっともこの式`(13)`を用いたとしても、下図のように絶対値の大きい定義域では発散してしまうが、それぞれの有効な領域に応じて定義式を切り替えることで、`x`の全域を高精度にサポートすることができる。
+
+> |  |  |
+> |:-:|:-:|
+> | ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_5.png) | ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_100.png) |
+
+我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
+
+```pascal
+function Cum2DistT( const X_,V_:Double ) :Double;
+var
+   X2 :Double;
+begin
+     X2 := Pow2( X_ );
+     if 100 * X2 < V_ then Result := 1 - RegIncBeta( X2 / ( X2 + V_ ), 1  / 2, V_ / 2 )
+                      else Result :=     RegIncBeta( V_ / ( X2 + V_ ), V_ / 2, 1  / 2 );
+end;
+```
 
 ----
 ## 3. 逆累積分布関数([Quantile function](https://en.wikipedia.org/wiki/Quantile_function))
