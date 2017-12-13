@@ -78,7 +78,7 @@ end;
 > |:-:|:-:|
 > | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_5.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_5.png) | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png) |
 
-なお、不完全ベータ関数を直接 [連分数](https://ja.wikipedia.org/wiki/連分数)展開([Continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) expansion) によって求める計算法も以下のように実装可能であり、
+ちなみに、不完全ベータ関数を直接 [連分数](https://ja.wikipedia.org/wiki/連分数)展開([Continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) expansion) によって求める計算法も以下のように実装可能であり、
 
 ```pascal
 function IncBeta( const X_,A_,B_:Double ) :Double;
@@ -132,7 +132,7 @@ begin
 end;
 ```
 
-どちらにせよ、絶対値の大きい定義域において非常に発散しやすく実用的ではない。
+いずれにせよ、絶対値の大きい定義域において非常に発散しやすく実用的ではない。
 
 > | by HypGeo21 | by Continued fraction expansion |
 > |:-:|:-:|
