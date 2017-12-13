@@ -196,7 +196,7 @@ end;
 > | ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_5.png) | ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_100.png) |
 
 そこで折衷案として、絶対値の小さい定義域には式`(13)`を、絶対値の大きい定義域で式`(10)`をと切り替えることで、`x`の全域を高精度にサポートすることができる。
-我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
+我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用した。
 
 ```pascal
 function Cum2DistT( const X_,V_:Double ) :Double;
