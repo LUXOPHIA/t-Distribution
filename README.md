@@ -4,8 +4,6 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 ----
 ## ■ [確率密度関数](https://ja.wikipedia.org/wiki/確率密度関数)([Probability density function](https://en.wikipedia.org/wiki/Probability_density_function))
 
-正規分布に沿った平均と分散を有する母集団から、無造作に`n`個のサンプルを抜き出した上で、その子集団内での平均値を計算すると、当然誤差が発生して本来の母集団の平均値からはズレてしまうが、そのズレは確率的に発生し、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν = n-1`の[ｔ分布](https://ja.wikipedia.org/wiki/T分布)に沿うことが知られている。
-
 [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png) ](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png) 
 
 ｔ分布の確率密度関数は [ベータ関数](https://ja.wikipedia.org/wiki/ベータ関数)([Beta function](https://en.wikipedia.org/wiki/Beta_function)) を用いて以下のように定義される。
@@ -79,6 +77,40 @@ end;
 > |  |  |
 > |:-:|:-:|
 > | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_5.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_5.png) | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png) |
+
+なお、不完全ベータ関数を直接 [連分数](https://ja.wikipedia.org/wiki/連分数)展開([Continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) expansion) によって求める計算法も以下のように実装可能であるが、
+
+```pascal
+function IncBeta( const X_,A_,B_:Double ) :Double;
+var
+   G0, G2, A0, A1, P0, P1, P2, Q0, Q1, Q2, N2A :Double;
+   N, N2 :Integer;
+begin
+     G2 := 0;
+     A1 := -X_ * ( A_ + B_ ) / ( A_ + 1 );
+     P0 := 0;  P1 := 1;  P2 := P1 + A1 * P0;
+     Q0 := 1;  Q1 := 1;  Q2 := Q1 + A1 * Q0;
+     for N := 1 to 10000 do
+     begin
+          G0 := G2;  G2 := P2 / Q2;
+          if ( Abs( G2 - G0 ) < DOUBLE_EPS3 ) then Break;
+          N2 := N shl 1;  N2A := N2 + A_;
+          A0 := +X_ *        N   * (      B_ - N ) / ( N2A * ( N2A - 1 ) );
+          A1 := -X_ * ( A_ + N ) * ( A_ + B_ + N ) / ( N2A * ( N2A + 1 ) );
+          P0 := P1;  P1 := P2;  P2 := P1 + A0 * P0;
+          Q0 := Q1;  Q1 := Q2;  Q2 := Q1 + A0 * Q0;
+          P0 := P1;  P1 := P2;  P2 := P1 + A1 * P0;
+          Q0 := Q1;  Q1 := Q2;  Q2 := Q1 + A1 * Q0;
+     end;
+     Result := Power( X_, A_ ) * Power( 1 - X_, B_ ) * G2 / A_;
+end;
+```
+
+絶対値の大きい定義域において非常に発散しやすく実用的ではない。
+
+> |  |  |
+> |:-:|:-:|
+> |[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)|[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac_100-1024.png)|
 
 そこで、より数値的に安定な [両側確率](https://www.weblio.jp/content/両側確率)([Two tailed probability](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)) の定義式を利用する。
 
