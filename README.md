@@ -2,7 +2,7 @@
 How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution).
 
 ----
-## ■ [確率密度関数](https://ja.wikipedia.org/wiki/確率密度関数)([Probability density function](https://en.wikipedia.org/wiki/Probability_density_function))
+## 1. [確率密度関数](https://ja.wikipedia.org/wiki/確率密度関数)([Probability density function](https://en.wikipedia.org/wiki/Probability_density_function))
 
 [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png) ](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-DF.png) 
 
@@ -20,7 +20,7 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 > \* [GammaFunc: How to compute the Gamma function.](https://github.com/LUXOPHIA/GammaFunc)：[LUXOPHIA](https://github.com/LUXOPHIA)：[GitHub](https://github.com)
 
 ----
-## ■ [累積分布関数](https://ja.wikipedia.org/wiki/確率分布#.E5.88.86.E5.B8.83.E9.96.A2.E6.95.B0)([CDF：Cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function))
+## 2. [累積分布関数](https://ja.wikipedia.org/wiki/確率分布#.E5.88.86.E5.B8.83.E9.96.A2.E6.95.B0)([CDF：Cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function))
 
 [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF.png) 
 
@@ -33,15 +33,19 @@ How to compute the [Student's t-Distribution](https://en.wikipedia.org/wiki/Stud
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BI%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7B%5Cmathrm%7BB%7D%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%7D%7B%7B%5Cmathrm%7BB%7D%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%7D)　`...(4)`
 
+### 2.1. 不完全ベータ関数の求め方
+
+#### 2.1.1 超幾何級数を用いる方法
+
 不完全ベータ関数は [ガウスの超幾何関数](https://ja.wikipedia.org/wiki/超幾何級数)([Gaussian hypergeometric function](https://en.wikipedia.org/wiki/Hypergeometric_function)) を用いて以下のように定義される。しかしこのままでは、桁落ちが著しく数値計算に向かない。
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%5Cmathrm%7BB%7D%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bz%7D%5E%7Ba%7D%7D%7Ba%7D%7B%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%7D%5Cleft%28%7B%7Ba%7D%7B%5Cmathrm%7B%2C%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(5)`  
 
-そこで我々の実装では、以下の [オイラーの変換公式(Euler's transformation)](https://en.wikipedia.org/wiki/Hypergeometric_function#Fractional_linear_transformations) を用いて、
+そこで実装上は、以下の [オイラーの変換公式(Euler's transformation)](https://en.wikipedia.org/wiki/Hypergeometric_function#Fractional_linear_transformations) を用いて、
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%5Cmathrm%7B%3B%7Dc%5Cmathrm%7B%3B%7Dz%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7B%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Ba%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7D%7B%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%7D%5Cleft%28%7B%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Ba%7D%7B%5Cmathrm%7B%2C%7D%7D%7Bc%7D%5Cmathrm%7B%7B-%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bc%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(6)`
 
-数値的安定性を高めた以下の定義式を採用している。
+数値的安定性を高めた以下の定義式を用いる。
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7B%5Cmathrm%7BB%7D%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bz%7D%5E%7Ba%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7Bb%7D%7D%7Ba%7D%7B%7B%7D_%7B2%7D%7BF%7D_%7B1%7D%7D%5Cleft%28%7B%7B1%7D%7B%5Cmathrm%7B%2C%7D%7D%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%7B%5Cmathrm%7B%3B%7D%7D%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7B%5Cmathrm%7B%3B%7D%7D%7Bz%7D%7D%5Cright%29)　`...(7)`
 
@@ -72,33 +76,17 @@ begin
 end;
 ```
 
-特に超幾何関数の引数において`a = 1`の場合は、以下のように簡略化できる。
+#### 2.1.2 連分数展開を用いる方法
 
-```pascal
-function HypGeo21A( const B_,C_,X_:Double ) :Double;
-var
-   P0, P1 :Double;
-   N :Integer;
-begin
-     P0 := 1;
-     Result := P0;
-     for N := 0 to 10000 do
-     begin
-          P1 := ( B_ + N ) / ( C_ + N ) * X_ * P0;
-          Result := Result + P1;
-          if Abs( P1 ) < DOUBLE_EPS3 then Break;
-          P0 := P1;
-     end;
-end;
-```
+不完全ベータ関数は、以下の [連分数](https://ja.wikipedia.org/wiki/連分数)([Continued fraction](https://en.wikipedia.org/wiki/Continued_fraction)) によって定義される。
 
-しかし定義式`(3)`は、下側確率を直接計算できるものの、下図のように絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BB%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bz%7D%5E%7Ba%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7Bb%7D%7D%7Ba%7D%5Ccfrac%7B%7Bd%7D_%7B0%7D%7D%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Ccfrac%7B%7Bd%7D_%7B1%7D%7D%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Ccfrac%7B%7Bd%7D_%7B2%7D%7D%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Ccfrac%7B%7Bd%7D_%7B3%7D%7D%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Ccdots%7D%7D%7D%7D%7D)　`...(9)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B0%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D)  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B1%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cright%29%7D%7Bz%7D)  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B0%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cfrac%7B%7Bn%7D%5Cleft%28%7B%7Bb%7D%5Cmathrm%7B%7B-%7D%7D%7Bn%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%5Cmathrm%7B%7B-%7D%7D%7B1%7D%7D%5Cright%29%7D%7Bz%7D)  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cright%29%7D%7Bz%7D)  
 
-> |  |  |
-> |:-:|:-:|
-> | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_5.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_5.png) | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png) |
-
-ちなみに、不完全ベータ関数を直接 [連分数](https://ja.wikipedia.org/wiki/連分数)展開([Continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) expansion) によって求める計算法も以下のように実装可能であり、
+一般的な連分数の評価法を素直に実装すると以下のようになり、
 
 ```pascal
 function IncBeta( const X_,A_,B_:Double ) :Double;
@@ -126,7 +114,7 @@ begin
 end;
 ```
 
-より桁あふれを起こしにくい、Lentz's method (Lentz, W.J. 1976, Applied Optics, vol. 15, pp. 668–671.) を取り入れた実装も以下のように可能ではあるが、
+より桁あふれを起こしにくい、Lentz's method (Lentz, W.J. 1976, Applied Optics, vol. 15, pp. 668–671.) を取り入れると、以下のような実装となる。
 
 ```pascal
 function IncBeta( const X_,A_,B_:Double ) :Double;
@@ -152,24 +140,27 @@ begin
 end;
 ```
 
-いずれにせよ、絶対値の大きい定義域において非常に発散しやすく実用的ではない。
+### 2.2 両側確率の利用
 
-> | by HypGeo21 | by Continued fraction expansion |
+定義式`(3)`は、下側確率を直接計算できるものの、下図のように絶対値の大きい定義域で計算が不安定となる。
+
+> | by Hypergeometric series | by Continued fraction |
 > |:-:|:-:|
-> |[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)|[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac2_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac2_100-1024.png)|
+> | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png) | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac2_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac2_100-1024.png) |
+
+この現象は、式`(3)`において [自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きい場合、つまり式`(4)`において引数`a`,`b`が両方とも大きい場合に、不完全ベータ関数の計算が不安定になることが原因である。
 
 そこで、より数値的に安定な [両側確率](https://www.weblio.jp/content/両側確率)([Two tailed probability](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)) の定義式を利用する。
 
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B-%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B-%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B1%7D%7B2%7D%7D%5Cright%29)　`...(9)`  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B-%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B-%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B1%7D%7B2%7D%7D%5Cright%29)　`...(10)`  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D)  
 
-なお、両側確率関数は原点で微分不可能なので、後述のニュートン法などを適用する際には注意が必要である。
-
-> [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-C2DF.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-C2DF.png)
+> [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-C2DF.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-C2DF.png)  
+> ※原点では微分不可能。
 
 下側確率`CumDistT`は、以下のように両側確率`Cum2DistT`を繋ぎ合わせることで再定義可能である。
 
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7BX%7D%5Cmathrm%7B%5Cleq%7D%7Bx%7D%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cleft%5C%7B%7B%5Cbegin%7Barray%7D%7Bll%7D%7B%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B-%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3C%7D%7D%7B0%7D%7D%5C%5C%20%7B%5Cfrac%7B1%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3D%7D%7D%7B0%7D%7D%5C%5C%20%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B&plus;%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3E%7D%7D%7B0%7D%7D%5Cend%7Barray%7D%7D%5Cright.)　`...(10)`
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%7BX%7D%5Cmathrm%7B%5Cleq%7D%7Bx%7D%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cleft%5C%7B%7B%5Cbegin%7Barray%7D%7Bll%7D%7B%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B-%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3C%7D%7D%7B0%7D%7D%5C%5C%20%7B%5Cfrac%7B1%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3D%7D%7D%7B0%7D%7D%5C%5C%20%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%7BP%7D%5Cleft%28%7B%5Cmathrm%7B%7B&plus;%7D%7D%7Bx%7D%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%7D%7B2%7D%7D%26%7B%7Bx%7D%5Cmathrm%7B%7B%3E%7D%7D%7B0%7D%7D%5Cend%7Barray%7D%7D%5Cright.)　`...(11)`
 
 ```pascal
 function CumDistT( const X_,V_:Double ) :Double;
@@ -182,43 +173,14 @@ begin
 end;
 ```
 
-しかし定義式`(9)`を用いると、下図のように絶対値の小さい定義域において精度が大幅に低下する。
-
+すると、不完全ベータ関数の引数のうち、`b`の方が常に`1/2`という小さな値になるので計算が安定化する。
 
 > |  |  |
 > |:-:|:-:|
 > | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_5.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_5.png) | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_100.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C1%29_100.png) | 
 
-そこで正則不完全ベータ関数の関係式を用いて、
-
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BI%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cleft%28%7Bb%5Cmathrm%7B%2C%7Da%7D%5Cright%29)　`...(11)`
-
-以下のように引数の順序を交換した定義式を併用する。
-
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29)　`...(12)`  
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bx%7D%5E%7B2%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D) 
-
-もっともこの式`(12)`を用いたとしても、下図のように絶対値の大きい定義域では発散してしまうが、それぞれの有効な領域に応じて定義式を切り替えることで、`x`の全域を高精度にサポートすることができる。
-
-> |  |  |
-> |:-:|:-:|
-> | ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_5.png) | ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_100.png) |
-
-我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
-
-```pascal
-function Cum2DistT( const X_,V_:Double ) :Double;
-var
-   X2 :Double;
-begin
-     X2 := Pow2( X_ );
-     if 100 * X2 < V_ then Result := 1 - RegIncBeta( X2 / ( X2 + V_ ), 1  / 2, V_ / 2 )
-                      else Result :=     RegIncBeta( V_ / ( X2 + V_ ), V_ / 2, 1  / 2 );
-end;
-```
-
 ----
-## ■ 逆累積分布関数([Quantile function](https://en.wikipedia.org/wiki/Quantile_function))
+## 3. 逆累積分布関数([Quantile function](https://en.wikipedia.org/wiki/Quantile_function))
 
 [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-InvCDF.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-InvCDF.png)
 
