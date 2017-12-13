@@ -78,7 +78,7 @@ end;
 > |:-:|:-:|
 > | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_5.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_5.png) | [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100.png) |
 
-なお、不完全ベータ関数を直接 [連分数](https://ja.wikipedia.org/wiki/連分数)展開([Continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) expansion) によって求める計算法も以下のように実装可能であるが、
+なお、不完全ベータ関数を直接 [連分数](https://ja.wikipedia.org/wiki/連分数)展開([Continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) expansion) によって求める計算法も以下のように実装可能であり、
 
 ```pascal
 function IncBeta( const X_,A_,B_:Double ) :Double;
@@ -106,9 +106,35 @@ begin
 end;
 ```
 
-絶対値の大きい定義域において非常に発散しやすく実用的ではない。
+より桁あふれを起こしにくい、[πとeの連分数展開とその数値計算法](http://ci.nii.ac.jp/naid/110006459103) の手法を取り入れた実装も以下のように可能ではあるが、
 
-> |  |  |
+```pascal
+function IncBeta( const X_,A_,B_:Double ) :Double;
+var
+   A0, A1, U0, U1, U2, V0, V1, V2, G0, G1, G2, N2A :Double;
+   N, N2 :Integer;
+begin
+     A1 := -X_ * ( A_ + B_ ) / ( A_ + 1 );
+     U1 := 2;  U2 := 1 + A1 / U1;
+     V1 := 1;  V2 := 1 + A1 / V1;
+     G0 := 1;  G1 := U1 / V1 * G0;  G2 := U2 / V2 * G1;
+     for N := 1 to 10000 do
+     begin
+          if ( Abs( G2 - G0 ) < DOUBLE_EPS3 ) then Break;
+          N2 := N shl 1;  N2A := N2 + A_;
+          A0 := +X_ *        N   * (      B_ - N ) / ( N2A * ( N2A - 1 ) );
+          A1 := -X_ * ( A_ + N ) * ( A_ + B_ + N ) / ( N2A * ( N2A + 1 ) );
+          U0 := U2;  U1 := 1 + A0 / U0;  U2 := 1 + A1 / U1;
+          V0 := V2;  V1 := 1 + A0 / V0;  V2 := 1 + A1 / V1;
+          G0 := G2;  G1 := U1 / V1 * G0;  G2 := U2 / V2 * G1;
+     end;
+     Result := Power( X_, A_ ) * Power( 1 - X_, B_ ) * ( G2 - 1 ) / A_;
+end;
+```
+
+どちらにせよ、絶対値の大きい定義域において非常に発散しやすく実用的ではない。
+
+> | by HypGeo21 | by Continued fraction expansion |
 > |:-:|:-:|
 > |[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)|[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac_100-1024.png)|
 
