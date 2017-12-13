@@ -126,7 +126,7 @@ begin
 end;
 ```
 
-より桁あふれを起こしにくい、[πとeの連分数展開とその数値計算法](http://ci.nii.ac.jp/naid/110006459103) の手法を取り入れた実装も以下のように可能ではあるが、
+より桁あふれを起こしにくい、Lentz's method (Lentz, W.J. 1976, Applied Optics, vol. 15, pp. 668–671.) を取り入れた実装も以下のように可能ではあるが、
 
 ```pascal
 function IncBeta( const X_,A_,B_:Double ) :Double;
