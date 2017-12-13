@@ -72,6 +72,26 @@ begin
 end;
 ```
 
+特に超幾何関数の引数において`a = 1`の場合は、以下のように簡略化できる。
+
+```pascal
+function HypGeo21A( const B_,C_,X_:Double ) :Double;
+var
+   P0, P1 :Double;
+   N :Integer;
+begin
+     P0 := 1;
+     Result := P0;
+     for N := 0 to 10000 do
+     begin
+          P1 := ( B_ + N ) / ( C_ + N ) * X_ * P0;
+          Result := Result + P1;
+          if Abs( P1 ) < DOUBLE_EPS3 then Break;
+          P0 := P1;
+     end;
+end;
+```
+
 しかし定義式`(3)`は、下側確率を直接計算できるものの、下図のように絶対値の大きい定義域での精度が低い上、[自由度](https://ja.wikipedia.org/wiki/自由度)([Degree of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)))`ν`が大きくなると発散しやすい。
 
 > |  |  |
