@@ -83,24 +83,24 @@ end;
 ```pascal
 function IncBeta( const X_,A_,B_:Double ) :Double;
 var
-   G0, G2, A0, A1, P0, P1, P2, Q0, Q1, Q2, N2A :Double;
+   G0, G2, C0, C1, P0, P1, P2, Q0, Q1, Q2, N2A :Double;
    N, N2 :Integer;
 begin
      G2 := 0;
-     A1 := -X_ * ( A_ + B_ ) / ( A_ + 1 );
-     P0 := 0;  P1 := 1;  P2 := P1 + A1 * P0;
-     Q0 := 1;  Q1 := 1;  Q2 := Q1 + A1 * Q0;
+     C1 := -X_ * ( A_ + B_ ) / ( A_ + 1 );
+     P0 := 0;  P1 := 1;  P2 := P1 + C1 * P0;
+     Q0 := 1;  Q1 := 1;  Q2 := Q1 + C1 * Q0;
      for N := 1 to 10000 do
      begin
           G0 := G2;  G2 := P2 / Q2;
           if ( Abs( G2 - G0 ) < DOUBLE_EPS3 ) then Break;
           N2 := N shl 1;  N2A := N2 + A_;
-          A0 := +X_ *        N   * (      B_ - N ) / ( N2A * ( N2A - 1 ) );
-          A1 := -X_ * ( A_ + N ) * ( A_ + B_ + N ) / ( N2A * ( N2A + 1 ) );
-          P0 := P1;  P1 := P2;  P2 := P1 + A0 * P0;
-          Q0 := Q1;  Q1 := Q2;  Q2 := Q1 + A0 * Q0;
-          P0 := P1;  P1 := P2;  P2 := P1 + A1 * P0;
-          Q0 := Q1;  Q1 := Q2;  Q2 := Q1 + A1 * Q0;
+          C0 := +X_ *        N   * (      B_ - N ) / ( N2A * ( N2A - 1 ) );
+          C1 := -X_ * ( A_ + N ) * ( A_ + B_ + N ) / ( N2A * ( N2A + 1 ) );
+          P0 := P1;  P1 := P2;  P2 := P1 + C0 * P0;
+          Q0 := Q1;  Q1 := Q2;  Q2 := Q1 + C0 * Q0;
+          P0 := P1;  P1 := P2;  P2 := P1 + C1 * P0;
+          Q0 := Q1;  Q1 := Q2;  Q2 := Q1 + C1 * Q0;
      end;
      Result := Power( X_, A_ ) * Power( 1 - X_, B_ ) * G2 / A_;
 end;
@@ -111,21 +111,21 @@ end;
 ```pascal
 function IncBeta( const X_,A_,B_:Double ) :Double;
 var
-   A0, A1, U0, U1, U2, V0, V1, V2, G0, G1, G2, N2A :Double;
+   C0, C1, U0, U1, U2, V0, V1, V2, G0, G1, G2, N2A :Double;
    N, N2 :Integer;
 begin
-     A1 := -X_ * ( A_ + B_ ) / ( A_ + 1 );
-     U1 := 2;  U2 := 1 + A1 / U1;
-     V1 := 1;  V2 := 1 + A1 / V1;
+     C1 := -X_ * ( A_ + B_ ) / ( A_ + 1 );
+     U1 := 2;  U2 := 1 + C1 / U1;
+     V1 := 1;  V2 := 1 + C1 / V1;
      G0 := 1;  G1 := U1 / V1 * G0;  G2 := U2 / V2 * G1;
      for N := 1 to 10000 do
      begin
           if ( Abs( G2 - G0 ) < DOUBLE_EPS3 ) then Break;
           N2 := N shl 1;  N2A := N2 + A_;
-          A0 := +X_ *        N   * (      B_ - N ) / ( N2A * ( N2A - 1 ) );
-          A1 := -X_ * ( A_ + N ) * ( A_ + B_ + N ) / ( N2A * ( N2A + 1 ) );
-          U0 := U2;  U1 := 1 + A0 / U0;  U2 := 1 + A1 / U1;
-          V0 := V2;  V1 := 1 + A0 / V0;  V2 := 1 + A1 / V1;
+          C0 := +X_ *        N   * (      B_ - N ) / ( N2A * ( N2A - 1 ) );
+          C1 := -X_ * ( A_ + N ) * ( A_ + B_ + N ) / ( N2A * ( N2A + 1 ) );
+          U0 := U2;  U1 := 1 + C0 / U0;  U2 := 1 + C1 / U1;
+          V0 := V2;  V1 := 1 + C0 / V0;  V2 := 1 + C1 / V1;
           G0 := G2;  G1 := U1 / V1 * G0;  G2 := U2 / V2 * G1;
      end;
      Result := Power( X_, A_ ) * Power( 1 - X_, B_ ) * ( G2 - 1 ) / A_;
@@ -136,7 +136,7 @@ end;
 
 > | by HypGeo21 | by Continued fraction expansion |
 > |:-:|:-:|
-> |[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)|[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac_100-1024.png)|
+> |[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29_100-1024.png)|[![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac2_100-1024.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%28%CE%BD%2C%CE%BD%29-Frac2_100-1024.png)|
 
 そこで、より数値的に安定な [両側確率](https://www.weblio.jp/content/両側確率)([Two tailed probability](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)) の定義式を利用する。
 
