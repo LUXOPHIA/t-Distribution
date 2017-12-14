@@ -163,12 +163,9 @@ end;
 
 ```pascal
 function CumDistT( const X_,V_:Double ) :Double;
-var
-   C :Double;
 begin
-     C := Cum2DistT( X_, V_ );
-     if X_ < 0 then Result :=     C / 2
-               else Result := 1 - C / 2;
+     Result := Cum2DistT( X_, V_ ) / 2;
+     if 0 < X_ then Result := 1 - Result;
 end;
 ```
 
