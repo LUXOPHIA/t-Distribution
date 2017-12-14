@@ -82,7 +82,7 @@ end;
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BB%7D_%7Bz%7D%5Cleft%28%7Ba%5Cmathrm%7B%2C%7Db%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bz%7D%5E%7Ba%7D%7B%5Cleft%28%7B%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7Bz%7D%7D%5Cright%29%7D%5E%7Bb%7D%7D%7Ba%7D%5Ccfrac%7B%7Bd%7D_%7B0%7D%7D%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Ccfrac%7B%7Bd%7D_%7B1%7D%7D%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Ccfrac%7B%7Bd%7D_%7B2%7D%7D%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Ccfrac%7B%7Bd%7D_%7B3%7D%7D%7B%7B1%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Ccdots%7D%7D%7D%7D%7D)　`...(9)`  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B0%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D)  
-> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B1%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cright%29%7D%7Bz%7D)  
+> ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B1%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%7D%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%7Bz%7D)  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B0%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cfrac%7B%7Bn%7D%5Cleft%28%7B%7Bb%7D%5Cmathrm%7B%7B-%7D%7D%7Bn%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%5Cmathrm%7B%7B-%7D%7D%7B1%7D%7D%5Cright%29%7D%7Bz%7D)  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cright%29%7D%7Bz%7D)  
 
@@ -189,14 +189,14 @@ end;
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%7B1%7D%5Cmathrm%7B%7B-%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B1%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%7D%5Cright%29)　`...(13)`  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cgamma%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%7Bx%7D%5E%7B2%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D) 
 
-すると今度は、絶対値の小さい定義域で安定し、絶対値の大きい定義域で発散しやすくなる。
+すると今度は、絶対値の小さい定義域で安定し、絶対値の大きい定義域で発散するようになる。定義式`(3)`と似た特性ではあるが、格段に安定している。
 
 > |  |  |
 > |:-:|:-:|
 > | ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_5.png) | ![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-CDF%281%2C%CE%BD%29_100.png) |
 
-そこで折衷案として、絶対値の小さい定義域には式`(13)`を、絶対値の大きい定義域で式`(10)`をと切り替えることで、`x`の全域を高精度にサポートすることができる。
-我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用した。
+つまり、原点付近では式`(13)`を、それ以外では式`(10)`を、と適宜切り替えることで、`x`の全域を高精度にサポートすることができる。
+我々の実装では経験的に導いた `Abs(x) < Sqrt(ν)/10` という切り替え条件を採用している。
 
 ```pascal
 function Cum2DistT( const X_,V_:Double ) :Double;
