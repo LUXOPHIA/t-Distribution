@@ -86,7 +86,7 @@ end;
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B0%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cfrac%7B%7Bn%7D%5Cleft%28%7B%7Bb%7D%5Cmathrm%7B%7B-%7D%7D%7Bn%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%5Cmathrm%7B%7B-%7D%7D%7B1%7D%7D%5Cright%29%7D%7Bz%7D)  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7Bd%7D_%7B%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%5Cmathrm%7B%7B-%7D%7D%5Cfrac%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bb%7D%5Cmathrm%7B%7B&plus;%7D%7D%7Bn%7D%7D%5Cright%29%7D%7B%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%7D%5Cright%29%5Cleft%28%7B%7Ba%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B2%7D%7Bn%7D%5Cmathrm%7B%7B&plus;%7D%7D%7B1%7D%7D%5Cright%29%7D%7Bz%7D)  
 
-一般的な連分数の評価法を素直に実装すると以下のようになり、
+一般的な連分数の評価法 (L.Lorentzen and H.Waadeland, "Continued Fractions with Applications," North-Holland, Amsterdam, 1992.) を素直に実装すると以下のようになり、
 
 ```pascal
 function IncBeta( const X_,A_,B_:Double ) :Double;
