@@ -154,7 +154,6 @@ end;
 
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%7BP%7D%5Cleft%28%7B%5Cleft%7C%7Bx%7D%5Cright%7C%5Cmathrm%7B%5Cleq%7D%5Cleft%7C%7BX%7D%5Cright%7C%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B-%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B-%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathop%7B%5Cint%7D%5Cnolimits_%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cleft%7C%7Bx%7D%5Cright%7C%7D%5Cnolimits%5E%7B%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathrm%7B%5Cinfty%7D%7D%7B%7BP%7D%5Cleft%28%7Bt%7D%5Cright%29%7Bdt%7D%7D%5Cmathrm%7B%7B%3D%7D%7D%7BI%7D_%7B%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%7D%5Cleft%28%7B%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B2%7D%5Cmathrm%7B%2C%7D%5Cfrac%7B1%7D%7B2%7D%7D%5Cright%29)　`...(10)`  
 > ![](https://latex.codecogs.com/svg.latex?%5Clarge%20%5Cmathit%7B%5Cbeta%7D%5Cleft%28%7Bx%7D%5Cright%29%5Cmathrm%7B%7B%3D%7D%7D%5Cfrac%7B%5Cmathit%7B%5Cnu%7D%7D%7B%7Bx%7D%5E%7B2%7D%5Cmathrm%7B%7B&plus;%7D%7D%5Cmathit%7B%5Cnu%7D%7D)  
-
 > [![](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-C2DF.png)](https://github.com/LUXOPHIA/t-Distribution/raw/master/--------/t-C2DF.png)  
 > ※原点では微分不可能。
 
