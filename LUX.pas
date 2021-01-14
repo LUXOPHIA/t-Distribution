@@ -6,7 +6,22 @@ uses System.Types, System.SysUtils, System.Classes, System.Math.Vectors, System.
 
 type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$【型】
 
-     PPByte = ^PByte;
+     Int08u = Byte    ;  Int8u = Int08u;
+     Int08s = Shortint;  Int8s = Int08s;
+     Int16u = Word    ;
+     Int16s = Smallint;
+     Int32u = Cardinal;
+     Int32s = Integer ;
+     Int64u = UInt64  ;
+     Int64s = Int64   ;
+
+     Flo32s = Single  ;
+     Flo64s = Double  ;
+
+     //-------------------------------------------------------------------------
+
+     PPByte    = ^PByte;
+     PPLongint = ^PLongint;
 
      //-------------------------------------------------------------------------
 
@@ -184,6 +199,7 @@ type //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
        ///// メソッド
        function EndOfStream :Boolean;
        function ReadLine :String;
+       function Read( var Buffer_; Count_:Longint ) :Longint;
      end;
 
      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TSearchBM<_TYPE_>
@@ -284,19 +300,31 @@ const //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   function LnXPlus1( const X_:Extended) :Extended; inline; overload;
 {$ENDIF}
 
-function Pow2( const X_:Integer ) :Integer; inline; overload;
+function Pow2( const X_:Int32u ) :Int32u; inline; overload;
+function Pow2( const X_:Int32s ) :Int32s; inline; overload;
+function Pow2( const X_:Int64u ) :Int64u; inline; overload;
+function Pow2( const X_:Int64s ) :Int64s; inline; overload;
 function Pow2( const X_:Single ) :Single; inline; overload;
 function Pow2( const X_:Double ) :Double; inline; overload;
 
-function Pow3( const X_:Integer ) :Integer; inline; overload;
+function Pow3( const X_:Int32u ) :Int32u; inline; overload;
+function Pow3( const X_:Int32s ) :Int32s; inline; overload;
+function Pow3( const X_:Int64u ) :Int64u; inline; overload;
+function Pow3( const X_:Int64s ) :Int64s; inline; overload;
 function Pow3( const X_:Single ) :Single; inline; overload;
 function Pow3( const X_:Double ) :Double; inline; overload;
 
-function Pow4( const X_:Integer ) :Integer; inline; overload;
+function Pow4( const X_:Int32u ) :Int32u; inline; overload;
+function Pow4( const X_:Int32s ) :Int32s; inline; overload;
+function Pow4( const X_:Int64u ) :Int64u; inline; overload;
+function Pow4( const X_:Int64s ) :Int64s; inline; overload;
 function Pow4( const X_:Single ) :Single; inline; overload;
 function Pow4( const X_:Double ) :Double; inline; overload;
 
-function Pow5( const X_:Integer ) :Integer; inline; overload;
+function Pow5( const X_:Int32u ) :Int32u; inline; overload;
+function Pow5( const X_:Int32s ) :Int32s; inline; overload;
+function Pow5( const X_:Int64u ) :Int64u; inline; overload;
+function Pow5( const X_:Int64s ) :Int64s; inline; overload;
 function Pow5( const X_:Single ) :Single; inline; overload;
 function Pow5( const X_:Double ) :Double; inline; overload;
 
@@ -350,8 +378,8 @@ function MaxI( const Vs_:array of Integer ) :Integer; overload;
 function MaxI( const Vs_:array of Single ) :Integer; overload;
 function MaxI( const Vs_:array of Double ) :Integer; overload;
 
-function RealMod( const X_,Range_:Integer ) :Integer; overload;
-function RealMod( const X_,Range_:Int64 ) :Int64; overload;
+function PoMod( const X_,Range_:Integer ) :Integer; overload;
+function PoMod( const X_,Range_:Int64 ) :Int64; overload;
 
 {$IF Defined( MACOS ) or Defined( MSWINDOWS ) }
 function RevBytes( const Value_:Word ) :Word; overload;
@@ -379,24 +407,42 @@ function BinPow( const N_:Cardinal ) :Cardinal; overload;
 function BinPow( const N_:Int64 ) :Int64; overload;
 function BinPow( const N_:UInt64 ) :UInt64; overload;
 
+function UIntToStr( const Value_:Uint32; const N_:Integer; const C_:Char = '0' ) :String; overload;
+function UIntToStr( const Value_:UInt64; const N_:Integer; const C_:Char = '0' ) :String; overload;
+
 function IntToStr( const Value_:Integer; const N_:Integer; const C_:Char = '0' ) :String; overload;
 function IntToStr( const Value_:Int64; const N_:Integer; const C_:Char = '0' ) :String; overload;
 function IntToStrP( const Value_:Integer; const N_:Integer; const C_:Char = '0' ) :String; overload;
 function IntToStrP( const Value_:Int64; const N_:Integer; const C_:Char = '0' ) :String; overload;
 
-procedure FloatToStr( const Value_:Single; const N_:Integer; out Man_,Exp_:String ); overload;
-procedure FloatToStr( const Value_:Double; const N_:Integer; out Man_,Exp_:String ); overload;
+function FloatToStr( const Value_:Single; const N_:Integer; out Man_,Exp_:String ) :Boolean; overload;
+function FloatToStr( const Value_:Double; const N_:Integer; out Man_,Exp_:String ) :Boolean; overload;
 
 function _TestFloatToStr_Single( const Value_:String; const N_:Integer ) :String;
 function _TestFloatToStr_Double( const Value_:String; const N_:Integer ) :String;
 
-procedure FloatToStr( const Value_:Single; const N_:Integer; out Man_,Exp_:String; out DecN_:Integer ); overload;
-procedure FloatToStr( const Value_:Double; const N_:Integer; out Man_,Exp_:String; out DecN_:Integer ); overload;
+function FloatToStr( const Value_:Single; const N_:Integer; out Man_,Exp_:String; out DecN_:Integer ) :Boolean; overload;
+function FloatToStr( const Value_:Double; const N_:Integer; out Man_,Exp_:String; out DecN_:Integer ) :Boolean; overload;
 
 function FloatToStr( const Value_:Single; const N_:Integer ) :String; overload;
 function FloatToStr( const Value_:Double; const N_:Integer ) :String; overload;
 function FloatToStrP( const Value_:Single; const N_:Integer ) :String; overload;
 function FloatToStrP( const Value_:Double; const N_:Integer ) :String; overload;
+
+function Floor( const X_,D_:UInt32 ) :UInt32; overload;
+function Floor( const X_,D_:UInt64 ) :UInt64; overload;
+
+function Ceil( const X_,D_:UInt32 ) :UInt32; overload;
+function Ceil( const X_,D_:UInt64 ) :UInt64; overload;
+
+function Floor2N( const X_,D_:UInt32 ) :UInt32; overload;
+function Floor2N( const X_,D_:UInt64 ) :UInt64; overload;
+
+function Ceil2N( const X_,D_:UInt32 ) :UInt32; overload;
+function Ceil2N( const X_,D_:UInt64 ) :UInt64; overload;
+
+procedure GetMemAligned( out P_:Pointer; const Size_,Align2N_:UInt32 );
+procedure FreeMemAligned( const P_:Pointer );
 
 implementation //############################################################### ■
 
@@ -583,8 +629,8 @@ end;
 constructor TMarginArray<_TValue_>.Create( const LowerN_,Count_,UpperN_:Integer );
 begin
      _LowerN := LowerN_;
-     _Count  :=Count_ ;
-     _UpperN :=UpperN_;
+     _Count  := Count_ ;
+     _UpperN := UpperN_;
 
      InitArray;
 end;
@@ -699,6 +745,11 @@ begin
      end;
 
      Result := _Encoding.GetString( Bs );
+end;
+
+function TFileReader.Read( var Buffer_; Count_:Longint ) :Longint;
+begin
+     Result := BaseStream.Read( Buffer_, Count_ );
 end;
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TSearchBM<_TYPE_>
@@ -1153,7 +1204,22 @@ end;
 
 //------------------------------------------------------------------------------
 
-function Pow2( const X_:Integer ) :Integer;
+function Pow2( const X_:Int32u ) :Int32u;
+begin
+     Result := Sqr( X_ );
+end;
+
+function Pow2( const X_:Int32s ) :Int32s;
+begin
+     Result := Sqr( X_ );
+end;
+
+function Pow2( const X_:Int64u ) :Int64u;
+begin
+     Result := Sqr( X_ );
+end;
+
+function Pow2( const X_:Int64s ) :Int64s;
 begin
      Result := Sqr( X_ );
 end;
@@ -1170,7 +1236,22 @@ end;
 
 //------------------------------------------------------------------------------
 
-function Pow3( const X_:Integer ) :Integer;
+function Pow3( const X_:Int32u ) :Int32u;
+begin
+     Result := X_ * Pow2( X_ );
+end;
+
+function Pow3( const X_:Int32s ) :Int32s;
+begin
+     Result := X_ * Pow2( X_ );
+end;
+
+function Pow3( const X_:Int64u ) :Int64u;
+begin
+     Result := X_ * Pow2( X_ );
+end;
+
+function Pow3( const X_:Int64s ) :Int64s;
 begin
      Result := X_ * Pow2( X_ );
 end;
@@ -1187,7 +1268,22 @@ end;
 
 //------------------------------------------------------------------------------
 
-function Pow4( const X_:Integer ) :Integer;
+function Pow4( const X_:Int32u ) :Int32u;
+begin
+     Result := Pow2( Pow2( X_ ) );
+end;
+
+function Pow4( const X_:Int32s ) :Int32s;
+begin
+     Result := Pow2( Pow2( X_ ) );
+end;
+
+function Pow4( const X_:Int64u ) :Int64u;
+begin
+     Result := Pow2( Pow2( X_ ) );
+end;
+
+function Pow4( const X_:Int64s ) :Int64s;
 begin
      Result := Pow2( Pow2( X_ ) );
 end;
@@ -1204,7 +1300,22 @@ end;
 
 //------------------------------------------------------------------------------
 
-function Pow5( const X_:Integer ) :Integer;
+function Pow5( const X_:Int32u ) :Int32u;
+begin
+     Result := Pow4( X_ ) * X_;
+end;
+
+function Pow5( const X_:Int32s ) :Int32s;
+begin
+     Result := Pow4( X_ ) * X_;
+end;
+
+function Pow5( const X_:Int64u ) :Int64u;
+begin
+     Result := Pow4( X_ ) * X_;
+end;
+
+function Pow5( const X_:Int64s ) :Int64s;
 begin
      Result := Pow4( X_ ) * X_;
 end;
@@ -1640,14 +1751,18 @@ end;
 
 //------------------------------------------------------------------------------
 
-function RealMod( const X_,Range_:Integer ) :Integer;
+function PoMod( const X_,Range_:Integer ) :Integer;
 begin
-     Result := X_ mod Range_;  if Result < 0 then Inc( Result, Range_ );
+     Result := X_ - ( X_ div Range_ ) * Range_;
+
+     if Result < 0 then Inc( Result, Range_ );
 end;
 
-function RealMod( const X_,Range_:Int64 ) :Int64;
+function PoMod( const X_,Range_:Int64 ) :Int64;
 begin
-     Result := X_ mod Range_;  if Result < 0 then Inc( Result, Range_ );
+     Result := X_ - ( X_ div Range_ ) * Range_;
+
+     if Result < 0 then Inc( Result, Range_ );
 end;
 
 //------------------------------------------------------------------------------
@@ -1820,6 +1935,22 @@ end;
 
 //------------------------------------------------------------------------------
 
+function UIntToStr( const Value_:Uint32; const N_:Integer; const C_:Char = '0' ) :String;
+begin
+     Result := UIntToStr( Value_ );
+
+     Result := Result.Insert( 0, StringOfChar( C_, N_ - Length( Result ) ) );
+end;
+
+function UIntToStr( const Value_:UInt64; const N_:Integer; const C_:Char = '0' ) :String;
+begin
+     Result := UIntToStr( Value_ );
+
+     Result := Result.Insert( 0, StringOfChar( C_, N_ - Length( Result ) ) );
+end;
+
+//------------------------------------------------------------------------------
+
 function IntToStr( const Value_:Integer; const N_:Integer; const C_:Char = '0' ) :String;
 var
    I :Integer;
@@ -1870,14 +2001,18 @@ begin
      Exp_ := Value_.Substring( I+1 );
 end;
 
-procedure FloatToStr( const Value_:Single; const N_:Integer; out Man_,Exp_:String );
+function FloatToStr( const Value_:Single; const N_:Integer; out Man_,Exp_:String ) :Boolean;
 begin
-     _SplitME( FloatToStrF( Value_, TFloatFormat.ffExponent, N_, 0 ), Man_,Exp_ );
+     Result := not ( Value_.IsNan or Value_.IsInfinity );
+
+     if Result then _SplitME( FloatToStrF( Value_, TFloatFormat.ffExponent, N_, 0 ), Man_,Exp_ );
 end;
 
-procedure FloatToStr( const Value_:Double; const N_:Integer; out Man_,Exp_:String );
+function FloatToStr( const Value_:Double; const N_:Integer; out Man_,Exp_:String ) :Boolean;
 begin
-     _SplitME( FloatToStrF( Value_, TFloatFormat.ffExponent, N_, 0 ), Man_,Exp_ );
+     Result := not ( Value_.IsNan or Value_.IsInfinity );
+
+     if Result then _SplitME( FloatToStrF( Value_, TFloatFormat.ffExponent, N_, 0 ), Man_,Exp_ );
 end;
 
 //------------------------------------------------------------------------------
@@ -1896,18 +2031,18 @@ begin
      if Result <= 0 then Result := -E-1;
 end;
 
-procedure FloatToStr( const Value_:Single; const N_:Integer; out Man_,Exp_:String; out DecN_:Integer );
+function FloatToStr( const Value_:Single; const N_:Integer; out Man_,Exp_:String; out DecN_:Integer ) :Boolean;
 begin
-     FloatToStr( Value_, N_, Man_, Exp_ );
+     Result := FloatToStr( Value_, N_, Man_, Exp_ );
 
-     DecN_ := _DecN( Man_, Exp_ );
+     if Result then DecN_ := _DecN( Man_, Exp_ );
 end;
 
-procedure FloatToStr( const Value_:Double; const N_:Integer; out Man_,Exp_:String; out DecN_:Integer );
+function FloatToStr( const Value_:Double; const N_:Integer; out Man_,Exp_:String; out DecN_:Integer ) :Boolean;
 begin
-     FloatToStr( Value_, N_, Man_, Exp_ );
+     Result := FloatToStr( Value_, N_, Man_, Exp_ );
 
-     DecN_ := _DecN( Man_, Exp_ );
+     if Result then DecN_ := _DecN( Man_, Exp_ );
 end;
 
 //------------------------------------------------------------------------------
@@ -1953,10 +2088,17 @@ var
    M, E :String;
    D :Integer;
 begin
-     FloatToStr( Value_, N_, M, E, D );
-
-     if Abs( D ) <= N_ then Result := FloatToStrF( Value_, TFloatFormat.ffFixed, N_, ClampMin( D, 0 ) )
-                       else Result := M + 'e' + E;
+     if FloatToStr( Value_, N_, M, E, D ) then
+     begin
+          if Abs( D ) <= N_ then Result := FloatToStrF( Value_, TFloatFormat.ffFixed, N_, ClampMin( D, 0 ) )
+                            else Result := M + 'e' + E;
+     end
+     else
+     if Value_.IsNan              then Result :=  'NAN'
+                                  else
+     if Value_.IsNegativeInfinity then Result := '-INF'
+                                  else
+     if Value_.IsPositiveInfinity then Result := '+INF';
 end;
 
 function FloatToStr( const Value_:Double; const N_:Integer ) :String;
@@ -1964,10 +2106,17 @@ var
    M, E :String;
    D :Integer;
 begin
-     FloatToStr( Value_, N_, M, E, D );
-
-     if Abs( D ) <= N_ then Result := FloatToStrF( Value_, TFloatFormat.ffFixed, N_, ClampMin( D, 0 ) )
-                       else Result := M + 'e' + E;
+     if FloatToStr( Value_, N_, M, E, D ) then
+     begin
+          if Abs( D ) <= N_ then Result := FloatToStrF( Value_, TFloatFormat.ffFixed, N_, ClampMin( D, 0 ) )
+                            else Result := M + 'e' + E;
+     end
+     else
+     if Value_.IsNan              then Result :=  'NAN'
+                                  else
+     if Value_.IsNegativeInfinity then Result := '-INF'
+                                  else
+     if Value_.IsPositiveInfinity then Result := '+INF';
 end;
 
 function FloatToStrP( const Value_:Single; const N_:Integer ) :String;
@@ -1984,11 +2133,99 @@ begin
      if Value_ > 0 then Result := '+' + Result;
 end;
 
+//------------------------------------------------------------------------------
+
+function Floor( const X_,D_:UInt32 ) :UInt32;
+begin
+     Result := X_ div D_ * D_;
+end;
+
+function Floor( const X_,D_:UInt64 ) :UInt64;
+begin
+     Result := X_ div D_ * D_;
+end;
+
+//------------------------------------------------------------------------------
+
+function Ceil( const X_,D_:UInt32 ) :UInt32;
+begin
+     Result := Floor( X_ + D_ - 1, D_ );
+end;
+
+function Ceil( const X_,D_:UInt64 ) :UInt64;
+begin
+     Result := Floor( X_ + D_ - 1, D_ );
+end;
+
+//------------------------------------------------------------------------------
+
+function Floor2N( const X_,D_:UInt32 ) :UInt32;
+begin
+     Result := X_ and not ( D_ - 1 );
+end;
+
+function Floor2N( const X_,D_:UInt64 ) :UInt64;
+begin
+     Result := X_ and not ( D_ - 1 );
+end;
+
+//------------------------------------------------------------------------------
+
+function Ceil2N( const X_,D_:UInt32 ) :UInt32;
+begin
+     Result := Floor( X_ + D_ - 1, D_ );
+end;
+
+function Ceil2N( const X_,D_:UInt64 ) :UInt64;
+begin
+     Result := Floor( X_ + D_ - 1, D_ );
+end;
+
+//------------------------------------------------------------------------------
+
+procedure GetMemAligned( out P_:Pointer; const Size_,Align2N_:UInt32 );
+const
+     H :UInt32 = SizeOf( Pointer );
+var
+   P0 :Pointer;
+   PP :PPointer;
+   I0, I1 :NativeUInt;
+begin
+     //  ┠───Ａ───╂────────Ｓ────────┤
+     //  ┃              ┃                                  │
+     //  ┃  │I0        ┃              ┃              ┃  │      │  ┃
+     //  ╂─├─┬─┬─┣━┯━┯━┯━╋━┯━┯━┯━╋━┥─┬─┤─╂
+     //  ┃  │×│×│I0┃◯│◯│◯│◯┃◯│◯│◯│◯┃◯│×│×│  ┃
+     //  ╂─├─┴─┴─┣━┷━┷━┷━╋━┷━┷━┷━╋━┥─┴─┤─╂
+     //  ┃  │  │      ┃I1    │      ┃              ┃          │  ┃
+     //      │  │              │                                  │
+     //      ├Ｈ┼───Ａ───┼────────Ｓ────────┤
+
+     GetMem( P0, H + Align2N_ + Size_ );
+
+     I0 := NativeUInt( P0 );
+
+     I1 := Ceil2N( H + I0, Align2N_ );
+
+     P_ := Pointer( I1 );
+
+     PP := P_;  Dec( PP );  PP^ := P0;
+end;
+
+procedure FreeMemAligned( const P_:Pointer );
+var
+   PP :PPointer;
+begin
+     PP := P_;  Dec( PP );  FreeMem( PP^ );
+end;
+
 //############################################################################## □
 
 initialization //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 初期化
 
      Randomize;
+
+     SetCurrentDir( ExtractFilePath( ParamStr( 0 ) ) );
 
 finalization //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 最終化
 
